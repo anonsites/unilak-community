@@ -10,12 +10,7 @@ import AccountStats from '@/components/AccountStats';
 import ConfirmModal from '@/components/ConfirmModal';
 import EditProfileModal from '@/components/EditProfileModal';
 import Avatar from '@/components/Avatar';
-
-type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string } | null;
-  topics_table: { name: string } | null;
-  subtopics_table: { name: string } | null;
-};
+import { ReviewWithRelations } from '@/lib/types';
 
 type ProfileWithExtras = Database['public']['Tables']['profiles_table']['Row'] & {
   avatar_url?: string | null;

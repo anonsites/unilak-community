@@ -1,14 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabaseServer';
-import { Database } from '@/lib/database.types';
 import AccountClient from './AccountClient';
-
-type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string } | null;
-  topics_table: { name: string } | null;
-  subtopics_table: { name: string } | null;
-};
-
+import { ReviewWithRelations } from '@/lib/types';
 
 export default async function AccountPage() {
   const supabase = await createClient();
@@ -28,7 +21,7 @@ export default async function AccountPage() {
       .from('reviews_table')
       .select(`
         *,
-        profiles_table (username),
+        profiles_table (username, avatar_url),
         topics_table (name),
         subtopics_table (name)
       `)
