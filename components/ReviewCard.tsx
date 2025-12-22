@@ -4,17 +4,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { timeAgo } from '@/lib/utils';
-import { Database } from '@/lib/database.types';
 import { deleteReview } from '@/app/reviews/actions';
 import ReportModal from './ReportModal';
 import ConfirmModal from './ConfirmModal';
 import Avatar from './Avatar';
-
-type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string | null; avatar_url: string | null } | null;
-  topics_table: { name: string } | null;
-  subtopics_table: { name: string } | null;
-};
+import { ReviewWithRelations } from '@/lib/types';
 
 interface ReviewCardProps {
   review: ReviewWithRelations;

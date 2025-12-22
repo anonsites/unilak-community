@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import ReviewCard from './ReviewCard';
-import { createClient } from '@/lib/auth';
 import { ReviewWithRelations } from '@/lib/types';
+import { createClient } from '@/lib/auth';
 
 interface ReviewsGridProps {
   reviews: ReviewWithRelations[];
