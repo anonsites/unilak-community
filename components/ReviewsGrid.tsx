@@ -2,14 +2,8 @@
 
 import { useState } from 'react';
 import ReviewCard from './ReviewCard';
-import { Database } from '@/lib/database.types';
 import { createClient } from '@/lib/auth';
-
-type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string | null; avatar_url: string | null } | null;
-  topics_table: { name: string } | null;
-  subtopics_table: { name: string } | null;
-};
+import { ReviewWithRelations } from '@/lib/types';
 
 interface ReviewsGridProps {
   reviews: ReviewWithRelations[];

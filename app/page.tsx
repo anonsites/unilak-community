@@ -4,18 +4,12 @@ import { createClient } from '@/lib/supabaseServer';
 import Footer from '@/components/Footer';
 import DirectionSection from '../components/DirectionSection';
 import DidYouKnowSlider from '@/components/DidYouKnowSlider';
-import { Database } from '@/lib/database.types';
 import ReviewCard from '@/components/ReviewCard';
 import CookieConsent from '@/components/CookieConsent';
 import { unwrap } from '@/lib/utils';
 import AnnouncementSection from '@/components/AnnouncementSection';
 import Avatar from '@/components/Avatar';
-
-type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string | null; avatar_url: string | null } | null;
-  topics_table: { name: string } | null;
-  subtopics_table: { name: string } | null;
-};
+import { ReviewWithRelations } from '@/lib/types';
 
 // Revalidate the page every 60 seconds. This helps with performance while keeping data fresh.
 export const revalidate = 60;
