@@ -1,13 +1,7 @@
 'use server';
 
 import { createClient } from '@/lib/supabaseServer';
-import { Database } from '@/lib/database.types';
-
-type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string | null } | null;
-  topics_table: { name: string } | null;
-  subtopics_table: { name: string } | null;
-};
+import { ReviewWithRelations } from '@/lib/types';
 
 function formatText(text: string): string {
   if (!text) return text;
@@ -21,7 +15,7 @@ export async function fetchReviews(offset: number, limit: number, topicId?: stri
     .from('reviews_table')
     .select(`
       *,
-      profiles_table (username),
+      profiles_table (username, avatar_url),
       topics_table (name),
       subtopics_table (name)
     `)

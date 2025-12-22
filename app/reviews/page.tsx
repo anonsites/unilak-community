@@ -4,13 +4,10 @@ import { createClient } from '@/lib/supabaseServer';
 import ReviewsGrid from '@/components/ReviewsGrid';
 import TopicFilterSlider from '@/components/TopicFilterSlider';
 import { Database } from '@/lib/database.types';
+import { ReviewWithRelations } from '@/lib/types';
 import FloatingAddButton from '@/components/FloatingAddButton';
 
-type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string | null } | null;
-  topics_table: { name: string } | null;
-  subtopics_table: { name: string } | null;
-};
+// using shared `ReviewWithRelations` from `lib/types`
 
 export const revalidate = 0;
 
@@ -64,7 +61,7 @@ export default async function ReviewsPage({
     .from('reviews_table')
     .select(`
       *,
-      profiles_table (username),
+      profiles_table (username, avatar_url),
       topics_table (name),
       subtopics_table (name)
     `)
