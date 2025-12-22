@@ -13,7 +13,7 @@ interface Feedback {
   email: string;
   feedback_type: string;
   message: string;
-  created_at: string;
+  created_at: string | null;
 }
 
 export default function FeedbackPage() {
@@ -120,7 +120,7 @@ export default function FeedbackPage() {
                     <p className="text-xs text-gray-500">{item.role} • {item.email}</p>
                   </div>
                 </div>
-                <span className="text-xs text-gray-500">{timeAgo(item.created_at)}</span>
+                <span className="text-xs text-gray-500">{item.created_at ? timeAgo(item.created_at) : ''}</span>
               </div>
 
               <div className="bg-gray-800/50 p-4 rounded-lg border border-gray-700/50">
