@@ -6,7 +6,7 @@ import { Database } from '@/lib/database.types';
 import { createClient } from '@/lib/auth';
 
 type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string | null } | null;
+  profiles_table: { username: string | null; avatar_url: string | null } | null;
   topics_table: { name: string } | null;
   subtopics_table: { name: string } | null;
 };
@@ -33,7 +33,7 @@ export default function ReviewsGrid({ reviews: initialReviews, topicId, currentU
         .from('reviews_table')
         .select(`
           *,
-          profiles_table (username),
+          profiles_table (username, avatar_url),
           topics_table (name),
           subtopics_table (name)
         `)
