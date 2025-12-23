@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s | UNILAK COMMUNITY"
   },
   description: "The community platform for UNILAK students to share reviews, announcements, and facts.",
-  keywords: ["UNILAK", "Reviews", "Rwanda", "University", "Community", "Students", "Kigali"],
+  keywords: ["UNILAK", "Reviews", "E-Learning", "E-Learning all courses", "Announcements", "community", "campus life", "facts"],
   openGraph: {
     title: "UNILAK COMMUNITY",
     description: "The community platform for UNILAK students.",
@@ -40,6 +40,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="apple-mobile-web-app-title" content="UNILAK community" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/web-app-manifest-192x192.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="mask-icon" href="/icon0.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >

@@ -15,8 +15,8 @@ import { ReviewWithRelations } from '@/lib/types';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'UNILAK Community - Reviews, Announcements & News',
-  description: 'Join the UNILAK Community to share reviews, stay updated with announcements, and connect with students and staff.',
+  title: 'UNILAK Community',
+  description: 'Join the UNILAK Community to share reviews, find class or courses easily by asking fellow students',
   openGraph: {
     title: 'UNILAK Community',
     description: 'Share reviews, get announcements, and connect with the UNILAK community.',

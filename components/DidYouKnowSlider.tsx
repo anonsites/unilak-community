@@ -15,7 +15,7 @@ export default function DidYouKnowSlider({ facts }: { facts: string[] }) {
         setIndex((prev) => (prev + 1) % facts.length);
         setFade(true); // Start fade in
       }, 500); // Duration of fade out (matches CSS transition)
-    }, 5000); // Time between slides
+    }, 60000); // Time between slides (1 minute)
 
     return () => clearInterval(interval);
   }, [facts.length]);
