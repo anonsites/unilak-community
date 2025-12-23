@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-domain.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://unilak-community.vercel.app';
 
   return [
     {
@@ -14,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/reviews`,
       lastModified: new Date(),
       changeFrequency: 'hourly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/announcement`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
       priority: 0.8,
     },
   ];

@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     description: 'Share reviews, get announcements, and connect with the UNILAK community.',
     type: 'website',
   },
+  verification: {
+    google: 'tFuQT-Ap5kGK3SrOlT1LcMzO1_4q4QcJe-2Pvt1OeR4',
+  },
 };
 
 export default async function Home() {

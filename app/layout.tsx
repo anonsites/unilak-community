@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://unilak-community.vercel.app'), // TODO: Replace with your actual production domain
+  metadataBase: new URL('https://unilak-community.vercel.app'), // this is my vercel production domain
   title: {
     default: "UNILAK COMMUNITY",
     template: "%s | UNILAK COMMUNITY"
