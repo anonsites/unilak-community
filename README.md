@@ -1,67 +1,71 @@
-UNILAK COMMUNITY – Developer README & Supabase Spec
-================================================================== 
+UNILAK COMMUNITY
+========================
 
-Purpose of this document:
-
-Define frontend behavior exactly
-Define Supabase backend design (tables, RLS, triggers, storage)
-
-
-Tech Stack
-===================================================================
-* Framework: Next.js (App Router)
-* Language: TypeScript
-* Styling: Tailwind CSS (dark UI)
-* Backend: Supabase (PostgreSQL + Auth + Storage)**
-* Hosting: Vercel
+DESCRIPTION:
+========================
+Empowering students with a voice. Share your experiences, stay informed, and connect with the campus community.
 
 
-Review Cards
+TECH STACK
+========================
+FRAMEWORK: Next.js (App Router)
+LANGUAGES: TypeScript, PLgSQL
+STYLING: Tailwind CSS
+BACKEND: Supabase (PostgreSQL + Auth + Storage)
+HOSTING: Vercel
 
-* Positive: Blue tile
-* Negative: Orange tile
+PAGES
+====================================================
 
-Avatars
+1. AUTHENTICATION PAGE
+========================
+* SIGN UP/IN form
+* sign up Help
 
-* Auto-generated alphabet avatar
-* No real photos by default
+## AUTHENTICATION RULES
 
-ROUTES / PAGES
-====================================================================
+* Signup is required to add reviews
+* Anonymous-first usernames
+* Role-based naming
 
-========================= 1 OVERVIEW (HOME) ========================
+### Roles & Default Prefix
 
-#### Dynamic stats (from backend)
+* Student → student_
+* CP → cp_
+* Lecturer → lecturer_
+* Leader → leader_
+* Alumni → alumni_
+* Explorer → explorer_
+
+Usernames auto-increment.
+
+2. HOME PAGE
+========================
+
+#### Dynamic stats (overview)
 
 * Total positive reviews
 * Total negative reviews
 * Progress sliders based on counts
 
-#### Sections
+#### Other sections
 
-* Announcement (moderator-managed)
-* Navigation text: EXPLORE, ASK, CLAIM or leave a REVIEW
-* Recent Reviews (latest 2, clickable)
+* Announcement (TOP SECTION)
+* Navigation text: ASK > CLAIM > REVIEW
+* Recent Reviews (latest 4)
 * Did You Know (moderator-managed)
+* ANNOUNCEMENT FEED
 
-Footer links:
+#### QUICK LINKS (footer)
 
 * My Account
-* Terms of Use
+* Make announcement
+* Feedback
 * Community Usage Rules
-* Make Announcement
-* Request Take Down
+* Privacy policy
 
-====================== COMMUNITY USAGE RULES =========================
-Last updated: (date)
-1. Say it as it is
-2. Show respect and use English language
-3. Don't expose your personal information
-4. No fake/fraud/scam/spam content
-5. Always remember rule N03
-
-
-=============================== 2 REVIEWS ===================================
+3. REVIEWS PAGES
+========================
 
 #### 1 Topic Filters (horizontal scroll)
 
@@ -73,38 +77,16 @@ Last updated: (date)
 * Knowledge
 * Other Services
 
-Rules:
-
-* Selected topic → blue circle
-* Unselected → gray circle
-
 Page layout:
 
-* Thin announcement section
-* Reviews list
-* Floating 'ADD YOURS' button
+* Reviews cards (2x2)
+* Floating 'ADD YOURS' button (FAB)
+
+Submitting a review requires authentication.
 
 
-### 2 Review Creation Flow
-
-Step-based form (progressive reveal):
-
-1. "I'm talking about:"
-   Main category + sub-options
-
-2. "My review is:"
-
-   Positive / Negative
-
-3. "Review / Claim / Issue"
-
-   Textarea
-   Recommendation encouraged
-
-Submit requires authentication.
-
-
-## TOPIC STRUCTURE (DATA-DRIVEN)
+TOPICS STRUCTURE
+==========================================
 
 ### Main Topics + Subtopics
 
@@ -115,8 +97,6 @@ Submit requires authentication.
   * All
 
 * LEADERSHIP
-
-  * Secret
   * Principal
   * Dean of Studies
   * Recovery Office
@@ -127,7 +107,6 @@ Submit requires authentication.
   * Individual
 
 * TECHNOLOGY
-
   * MIS / Elearning
   * Smart Attendance
   * Smart Boards
@@ -135,27 +114,27 @@ Submit requires authentication.
   * Other
 
 * WEEK OF PRAYER
-
-  * General
+  * programm
 
 * STUDENTS
-
-  * Secret
   * All
   * Individual
   * International
   * Rwandan
 
 * KNOWLEDGE
+ * General
 
 * OTHER SERVICES
+ * General
 
 
-## REVIEW DISPLAY RULES
+## REVIEW DISPLAY STRUCTURE
+==========================================
 
 Each review shows:
 
-* Alphabet avatar
+* Profile avatar
 * Username
 * Description: `is talking about <topic> in UNILAK > <subtopic>, <type>`
 * Review content
@@ -168,54 +147,58 @@ Each review shows:
   * Others: report
 
 
-
-## AUTHENTICATION RULES
-
-* Signup required to add reviews
-* Anonymous-first usernames
-* Role-based naming
-
-### Roles & Default Prefix
-
-* Student → anon_student
-* CP → anon_cp
-* Alumni → anon_alumni
-* Explorer → anon_explorer
-* Lecturer → anon_lecturer
-* Leader → anon_leader
-
-Usernames auto-increment.
-
-
-## MODERATOR DASHBOARD `/moderator`
+============ 3 ADMIN DASHBOARD (moderator) ============
 
 Capabilities:
-
-* Delete reviews
-* Update announcements
-* Update did you know
-* View take-down requests
-* View announcement requests
+==================================
+* Manage reviews (delete)
+* Manage reports (exmine reported reviews)
+* Manage announcements (Screen, reject, approve, handle payments)
+* Manage facts (update did you know)
+* Manage users
+* View the users feedback
 
 
 ## DEVELOPMENT PHASES
-=====================================================================================
+==================================
 
-Phase 1:
+Phase 1 (MVP):
+* Auth ✅
+* Reviews ✅
+* Announcements ✅
+* chat modal and Whatsapp integration ✅
+* Admin dashboard ✅
+* SEO, Index, Seeding
 
-* Auth
-* Reviews
-* Topics & filters
-
-Phase 2:
-
-* Moderator dashboard
-* Announcements
+Phase 2 (beta):
+* real usage
+* scaling
+* Track the feedback
 
 Phase 3:
 
-* Monetization & scaling
+* ongoing emprovements
 
 ## FINAL NOTE
 
-This platform is opinion-first, anonymous-first and moderation-backed.
+Development will keep ongoing to improve the platform security, UI/UX
+
+COMMUNITY USAGE RULES
+==================================
+1. ## Say it as it is
+Be honest and transparent. Share your genuine experiences without filtering the truth.
+
+2. ## Be respectful
+Treat others with dignity. Harassment, hate speech, or disrespect will not be tolerated.
+
+3. ## Use English language
+To ensure everyone understands, please communicate in English across the platform.
+
+4. ## Don't expose your personal information
+Protect your privacy. Never share sensitive details like phone numbers or addresses publicly.
+
+5. ## No fake/fraud/scam/spam content
+Keep the community clean. Misleading information, scams, and spam are strictly prohibited.
+
+6. ## Always remember rule N04
+We cannot emphasize this enough: Your personal safety and privacy come first.
