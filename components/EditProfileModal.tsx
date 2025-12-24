@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/utils/supabase/client';
+import Toast from './Toast';
 
 interface EditProfileModalProps {
   userId: string;
@@ -12,8 +13,9 @@ interface EditProfileModalProps {
 }
 
 const EMOJIS = [
-  '😀', '😁', '😒', '😜', '😂', // 5 Smileys
-  '🐶', '🐱', '🦁', '🐯', '🐻'  // 5 Animals
+  '\uD83D\uDE00', '\uD83D\uDE01', '\uD83D\uDE12', '\uD83D\uDE1C', '\uD83D\uDE02', // 5 Smileys
+  '\uD83D\uDC36', '\uD83D\uDC31', '\uD83E\uDD81', '\uD83D\uDC2F', '\uD83D\uDC3B', // 5 Animals
+  '\u2615', '\uD83C\uDF7B', '\uD83C\uDF49', '\uD83C\uDF4C', '\uD83C\uDF4A'      // 5 Food/Drink
 ];
 
 export default function EditProfileModal({ 
@@ -23,15 +25,16 @@ export default function EditProfileModal({
   onClose, 
   onUpdate 
 }: EditProfileModalProps) {
+  const supabase = createClient();
   const [username, setUsername] = useState(currentUsername);
   const [avatarUrl, setAvatarUrl] = useState(currentAvatarUrl || '');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
+    setToast(null);
 
     try {
       const updates: {
@@ -52,10 +55,11 @@ export default function EditProfileModal({
 
       if (error) throw error;
 
+      setToast({ message: 'Profile updated successfully!', type: 'success' });
       onUpdate();
-      onClose();
+      setTimeout(onClose, 2000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error updating profile');
+      setToast({ message: err instanceof Error ? err.message : 'Error updating profile', type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -63,18 +67,19 @@ export default function EditProfileModal({
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
       <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
         <div className="p-6 border-b border-white/10">
           <h2 className="text-xl font-bold text-white">Edit Profile</h2>
         </div>
         
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          {error && (
-            <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-3 rounded-lg">
-              {error}
-            </div>
-          )}
-
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-400">Username</label>
             <input
@@ -126,10 +131,18 @@ export default function EditProfileModal({
             </button>
             <button
               type="submit"
-              className="flex-1 bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold transition-colors disabled:opacity-50"
+              className="flex-1 bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
               disabled={loading}
             >
-              {loading ? 'Saving...' : 'Save Changes'}
+              {loading ? (
+                <>
+                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Saving...
+                </>
+              ) : 'Save Changes'}
             </button>
           </div>
         </form>

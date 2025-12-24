@@ -31,6 +31,7 @@ declare
   emojis text[] := array[
     '😀', '😁', '😒', '😜', '😂', -- 5 Smileys
     '🐶', '🐱', '🦁', '🐯', '🐻'  -- 5 Animals
+    '☕', '🍻', '🍉', '🍌', '🍊' -- 5 food & drinks
   ];
   random_index int;
 begin
@@ -403,7 +404,6 @@ select id, 'All' from topics_table where name = 'LECTURERS';
 
 insert into subtopics_table (topic_id, name)
 select id, unnest(array[
-  'Secret',
   'Principal',
   'Dean of Studies',
   'Recovery Office',
@@ -431,7 +431,7 @@ select id, unnest(array[
 ======================================================================================
 
 insert into subtopics_table (topic_id, name)
-select id, 'General'
+select id, 'Programm'
 from topics_table
 where name = 'WEEK OF PRAYER';
 
@@ -442,7 +442,6 @@ where name = 'WEEK OF PRAYER';
 
 insert into subtopics_table (topic_id, name)
 select id, unnest(array[
-  'Secret',
   'All',
   'International Students',
   'Rwandan Students'

@@ -241,16 +241,25 @@ export default function AnnouncementSection({ announcements, currentUserId, curr
           <div className="relative">
             <div className="h-12 w-12 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden ring-2 ring-cyan-500/50 shrink-0">
               <Avatar 
-                url={avatarUrl} 
-                alt={username || 'Announcement'}
-                fallback={<span className="text-xs font-bold text-white">{(username || 'A').charAt(0).toUpperCase()}</span>}
+                url={message ? avatarUrl : null} 
+                alt={message ? (username || 'Announcement') : 'Admin'}
+                fallback={message ? <span className="text-xs font-bold text-white">{(username || 'A').charAt(0).toUpperCase()}</span> : <span className="text-2xl">{'\uD83D\uDC36'}</span>}
                 imageClassName="w-full h-full object-cover"
                 emojiClassName="text-lg leading-none"
               />
             </div>
             <span className="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-gray-800 bg-green-500" />
           </div>
-          <h2 className="text-white font-bold tracking-wide text-sm">{username || 'Announcement'}</h2>
+          <h2 className="text-white font-bold tracking-wide text-sm flex items-center gap-1">
+            {message ? (username || 'Announcement') : (
+              <>
+                Admin@UNILAK
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-blue-500">
+                  <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
+                </svg>
+              </>
+            )}
+          </h2>
         </div>
         
         {message ? (
@@ -307,7 +316,7 @@ export default function AnnouncementSection({ announcements, currentUserId, curr
           </div>
         ) : (
           <div className="flex flex-col items-start gap-3">
-            <p className="text-gray-400 text-sm">No active announcements.</p>
+            <p className="text-gray-300 text-base font-semibold"> Ask the community, announce or advertise</p>
             <Link href="/announcement" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-md transition-colors text-sm tracking-wider">
               MAKE ANNOUNCEMENT
             </Link>
