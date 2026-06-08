@@ -28,15 +28,10 @@ export default function ShareClassButtons({ classId, courseName }: ShareClassBut
     window.open(`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`, '_blank');
   };
 
-  const shareOnTwitter = () => {
-    const url = `${window.location.origin}/find-classes/${classId}`;
-    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`, '_blank');
-  };
-
   return (
-    <div className="mt-8 border-t border-white/5 pt-8">
-      <h2 className="text-xl font-extrabold text-white">Share with your friend.</h2>
-      <div className="mt-4 flex flex-wrap gap-3">
+    <section className="rounded-lg border border-white/10 bg-gray-900 p-6 shadow-lg text-center">
+      <h2 className="text-xl font-extrabold text-white tracking-tight">Share with your friend.</h2>
+      <div className="mt-6 flex flex-wrap justify-center gap-3">
         <button
           onClick={copyLink}
           className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-bold text-gray-200 transition hover:bg-white/10"
@@ -68,6 +63,6 @@ export default function ShareClassButtons({ classId, courseName }: ShareClassBut
           WhatsApp
         </button>
       </div>
-    </div>
+    </section>
   );
 }

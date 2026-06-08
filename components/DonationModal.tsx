@@ -50,7 +50,7 @@ export default function DonationModal({ isOpen, onClose, onContinue }: DonationM
             </div>
 
             <div className="space-y-2">
-              <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight uppercase">Support us</h2>
+              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">Support us</h2>
               <p className="text-white text-lg font-bold  leading-relaxed">
                 We are two students dedicated to keeping this platform running. Your donation covers costs and keeps the community alive.
               </p>

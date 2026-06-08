@@ -102,44 +102,44 @@ export default async function ClassDetailPage({
           <div className="flex flex-col gap-6">
             {/* Course Information Card */}
             <section className="rounded-lg border border-white/10 bg-gray-900 p-6 shadow-lg">
-              <h1 className="text-2xl font-extrabold tracking-tight md:text-4xl mb-8">
+              <h1 className="text-4xl font-extrabold tracking-tight md:text-4xl mb-8">
                 {classItem.course_name}
               </h1>
 
               <h2 className="text-xl font-extrabold text-white mb-6">More Info</h2>
               <div className="space-y-4 border-l border-white/10 pl-6">
                 <p className="text-lg flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.902a48.627 48.627 0 0 1 8.232-4.408 60.462 60.462 0 0 0-.491-6.347m-15.482 0A50.585 50.585 0 0 0 12 13.447a50.585 50.585 0 0 0 7.74-3.303m-15.48 0a50.652 50.652 0 0 1 7.74-3.303m-7.74 3.303 7.74-3.303m0 0-.52-1.04a1.5 1.5 0 0 0-1.417-.923H4.26a1.5 1.5 0 0 0-1.417.923l-.52 1.04m15.482 0a50.653 50.653 0 0 0 7.74-3.303m-7.74 3.303.52-1.04a1.5 1.5 0 0 0 1.417-.923h7.164a1.5 1.5 0 0 0 1.417.923l.52 1.04M12 13.447l-7.74 3.303m7.74-3.303 7.74 3.303m0 0 1.04 2.08a1.5 1.5 0 0 0 1.415.923h7.164a1.5 1.5 0 0 0 1.417-.923l.52-1.04M12 13.447l-7.74 3.303m7.74-3.303 7.74 3.303m0 0-.52-1.04a1.5 1.5 0 0 0-1.417-.923H4.26a1.5 1.5 0 0 0-1.417.923l-.52 1.04" />
                   </svg>
                   <span className="text-white font-bold">Program:</span> <span className="text-cyan-200 font-semibold ml-2">{classItem.program}</span>
                 </p>
                 <p className="text-lg flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 21h16.5m-16.5 0a2.25 2.25 0 0 0 2.25-2.25H17.25A2.25 2.25 0 0 0 19.5 18.75m-16.5 0V8.25M19.5 18.75V8.25m-16.5 0a2.25 2.25 0 0 1 2.25-2.25h10.5a2.25 2.25 0 0 1 2.25 2.25m-16.5 0H5.25C3.906 6.75 3 5.656 3 4.312V3.75c0-1.036.84-1.875 1.875-1.875h16.5c1.036 0 1.875.84 1.875 1.875v.562c0 1.344-.906 2.437-2.25 2.437H19.5M12 4.5V18" />
                   </svg>
                   <span className="text-white font-bold">Faculty:</span> <span className="text-cyan-200 font-semibold ml-2">{classItem.faculty}</span>
                 </p>
                 <p className="text-lg flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 21v-7.5m-9 3.75h6.75M13.5 21h3.75m-3.75 0L15 18.75V10.5m-15 0h15" />
                   </svg>
                   <span className="text-white font-bold">Department:</span> <span className="text-cyan-200 font-semibold ml-2">{classItem.department}</span>
                 </p>
                 <p className="text-lg flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0h.008v.008H3v-.008Zm0 0H5.25" />
                   </svg>
                   <span className="text-white font-bold">Intake:</span> <span className="text-cyan-200 font-semibold ml-2">{classItem.intake}</span>
                 </p>
                 <p className="text-lg flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.902a48.627 48.627 0 0 1 8.232-4.408 60.462 60.462 0 0 0-.491-6.347m-15.482 0A50.585 50.585 0 0 0 12 13.447a50.585 50.585 0 0 0 7.74-3.303m-15.48 0a50.652 50.652 0 0 1 7.74-3.303m-7.74 3.303 7.74-3.303m0 0-.52-1.04a1.5 1.5 0 0 0-1.417-.923H4.26a1.5 1.5 0 0 0-1.417.923l-.52 1.04m15.482 0a50.653 50.653 0 0 0 7.74-3.303m-7.74 3.303.52-1.04a1.5 1.5 0 0 0 1.417-.923h7.164a1.5 1.5 0 0 0 1.417.923l.52 1.04M12 13.447l-7.74 3.303m7.74-3.303 7.74 3.303m0 0 1.04 2.08a1.5 1.5 0 0 0 1.415.923h7.164a1.5 1.5 0 0 0 1.417-.923l.52-1.04M12 13.447l-7.74 3.303m7.74-3.303 7.74 3.303m0 0-.52-1.04a1.5 1.5 0 0 0-1.417-.923H4.26a1.5 1.5 0 0 0-1.417.923l-.52 1.04" />
                   </svg>
                   <span className="text-white font-bold">Year of study:</span> <span className="text-cyan-200 font-semibold ml-2">Year {classItem.year_of_study}</span>
                 </p>
                 <p className="text-lg flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                   </svg>
                   <span className="text-white font-bold">Lecturer:</span> <span className="text-cyan-200 font-semibold ml-2">{classItem.lecturer || 'Not announced'}</span>
@@ -156,25 +156,25 @@ export default async function ClassDetailPage({
                     switch (index) {
                       case 0:
                         return (
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0h.008v.008H3v-.008Zm0 0H5.25" />
                           </svg>
                         );
                       case 1:
                         return (
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0h.008v.008H3v-.008Zm0 0H5.25" />
                           </svg>
                         );
                       case 2:
                         return (
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                           </svg>
                         );
                       case 3:
                         return (
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-cyan-400">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 mr-2 text-white">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75h-1.5m-6 0v6m0-6v6m0-6h6m-6 0H9" />
                           </svg>
                         );

@@ -314,14 +314,14 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
           <button
             type="button"
             onClick={onClose}
-            className="px-6 py-3.5 text-sm font-bold text-white rounded-xl bg-white/35 hover:bg-white/10 transition-colors uppercase tracking-widest"
+            className="px-6 py-3.5 text-lg font-bold text-white rounded-xl bg-white/35 hover:bg-white/10 transition-colors uppercase tracking-widest"
           >
             Skip
           </button>
           <button
             type="submit"
             disabled={isSubmitting || isLoadingCourses}
-            className="px-8 py-3.5 text-sm font-black rounded-xl bg-cyan-600 text-white hover:bg-cyan-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest shadow-lg shadow-cyan-900/20 active:scale-95"
+            className="px-8 py-3.5 text-lg font-black rounded-xl bg-cyan-600 text-white hover:bg-cyan-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-widest shadow-lg shadow-cyan-900/20 active:scale-95"
           >
             {isSubmitting ? 'Submitting...' : 'Submit Info'}
           </button>
