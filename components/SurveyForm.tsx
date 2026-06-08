@@ -187,7 +187,7 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
   };
 
   return (
-    <div className="p-8 bg-gradient-to-br from-[#496a97] via-[#142c3f] to-[#161a18] border border-white/5 rounded-2xl shadow-2xl text-white">
+    <div className="p-8 bg-[#496a97] border border-white/5 rounded-2xl shadow-2xl text-white">
       <div className="mb-8">
         <h2 className="text-3xl font-black tracking-tight mb-2 uppercase">TELL US ABOUT YOU</h2>
       </div>
@@ -316,7 +316,7 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
             onClick={onClose}
             className="px-6 py-3.5 text-sm font-bold text-white rounded-xl bg-white/35 hover:bg-white/10 transition-colors uppercase tracking-widest"
           >
-            Cancel
+            Skip
           </button>
           <button
             type="submit"

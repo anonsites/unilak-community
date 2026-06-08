@@ -119,7 +119,7 @@ export default function InformationPage() {
             <div className="mt-16 pt-8 border-t border-gray-700">
               <div className="bg-linear-to-br from-[#655c5c] to-[#38707a] rounded-lg p-8 text-center">
                 <h3 className="text-2xl font-bold mb-3">Can&apos;t find your answer?</h3>
-                <p className="text-white mb-6 max-w-2xl mx-auto">
+                <p className="text-white text-lg font-bold mb-6 max-w-2xl mx-auto">
                   If you couldn&apos;t find the information you&apos;re looking for, Send us a feedback
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
@@ -203,13 +203,15 @@ export default function InformationPage() {
           <div className="mt-16 pt-8 border-t border-gray-700">
             <div className="bg-linear-to-br from-[#655c5c] to-[#38707a] rounded-lg p-8 text-center">
               <h3 className="text-2xl font-bold mb-3">Have you found what you were looking for?</h3>
-              <p className="text-white mb-6 max-w-2xl mx-auto">
+              
+              {/*<p className="text-white text-lg font-bold mb-6 max-w-2xl mx-auto">
                 Consider supporting us to keep this platform running and improving.
-              </p>
+              </p>*/}
+
               <div className="flex flex-wrap justify-center gap-4">
                 <button
                   onClick={() => setShowDonationModal(true)}
-                  className="px-6 py-2.5 bg-blue-400 hover:bg-blue-300 rounded-lg font-medium transition-colors"
+                  className="px-6 py-2.5 text-lg bg-blue-400 hover:bg-blue-300 rounded-lg transition-colors"
                 >
                   Yes! Donate
                 </button>

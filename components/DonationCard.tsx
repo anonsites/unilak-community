@@ -17,15 +17,15 @@ export default function DonationCard() {
           Have you found what you were looking for?
         </h2>
         
-        <p className="relative z-10 text-indigo-100 text-lg mb-6 leading-relaxed">
+        {/*<p className="relative z-10 text-indigo-100 text-lg mb-6 leading-relaxed">
           Consider supporting us to keep this platform running and providing accurate class schedules for all students.
-        </p>
+        </p>*/}
 
         <button
           onClick={() => setIsOpen(true)}
           className="relative z-10 w-full py-3 px-6 bg-blue-400 text-white font-bold rounded-lg hover:bg-indigo-50 transition-colors shadow-lg active:scale-95"
         >
-          Donate
+          Yes
         </button>
       </div>
 
