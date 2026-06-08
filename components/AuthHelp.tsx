@@ -15,41 +15,33 @@ export default function AuthHelp() {
           <div className="flex gap-4">
             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-blue-400 font-bold text-sm">1</div>
             <div>
-              <h3 className="text-white font-bold text-sm mb-1">Use your email address not REG number</h3>
-              <p className="text-xs text-gray-400 leading-relaxed">Your email is private, only you can see it</p>
+              <h3 className="text-white font-bold text-2xl mb-1">Use your email address</h3>
+              <p className="text-lg text-white/80 leading-relaxed">Sign up with your email not REG number</p>
             </div>
           </div>
 
           <div className="flex gap-4">
             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-blue-400 font-bold text-sm">2</div>
             <div>
-              <h3 className="text-white font-bold text-sm mb-1">Set a password</h3>
-              <p className="text-xs text-gray-400 leading-relaxed">Your password should be strong</p>
+              <h3 className="text-white font-bold text-2xl mb-1">Use a Nickname</h3>
+              <p className="text-lg text-white/80 leading-relaxed">Set a nickname for yourself</p>
             </div>
           </div>
 
           <div className="flex gap-4">
             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-blue-400 font-bold text-sm">3</div>
             <div>
-              <h3 className="text-white font-bold text-sm mb-1">Be you</h3>
-              <p className="text-xs text-gray-400 leading-relaxed">Tell us who you are at UNILAK</p>
-            </div>
-          </div>
-
-          <div className="flex gap-4">
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-blue-400 font-bold text-sm">4</div>
-            <div>
-              <h3 className="text-white font-bold text-sm mb-1">Don&apos;t worry</h3>
-              <p className="text-xs text-gray-400 leading-relaxed">We will set an anonymous username for you</p>
+              <h3 className="text-white font-bold text-2xl mb-1">Stay safe</h3>
+              <p className="text-lg text-white/80 leading-relaxed">Engage respectfully with others</p>
             </div>
           </div>
         </div>
       </div>
 
       <div className="mt-12 pt-6 border-t border-gray-700/50">
-        <p className="text-[10px] font-bold text-gray-300 mb-2 uppercase tracking-wider">Disclaimer</p>
-        <p className="text-[10px] font-bold leading-relaxed text-gray-400">
-          This community is not run, affiliated, managed or owned by UNILAK (University of Lay Adventist of Kigali). Please double check information or reach their official site.
+        <p className="text-4xl font-bold text-white/80 mb-2 uppercase tracking-wider">Disclaimer</p>
+        <p className="text-[10px] font-bold leading-relaxed text-white/80">
+          This community is not run, affiliated, managed or owned by UNILAK (University of Lay Adventist of Kigali). Please double check information or reach their official website.
         </p>
       </div>
     </div>

@@ -62,21 +62,14 @@ export default function AccountClient({ user, profile, reviews }: AccountClientP
 
   return (
     <div className="min-h-screen bg-[#535350] text-white font-sans">
-      {/* Header */}
-      <div className="w-full bg-gradient-to-r from-gray-600 via-blue-500 to-gray-400 py-12 shadow-xl mb-8">
-        <div className="max-w-4xl mx-auto px-4 md:px-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold tracking-wider text-white drop-shadow-md">MY ACCOUNT</h1>
-          <Link href="/" className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors" title="Back to Home">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-          </Link>
-        </div>
-      </div>
+      {/* MINIMIZED HEADER */}
+      <header className="w-full bg-gray-900/80 border-b border-gray-800 py-4 px-4 md:px-8 flex flex-col items-center justify-center sticky top-0 z-40 backdrop-blur-md relative">
+        <h1 className="text-xl font-bold tracking-wider text-white">MY ACCOUNT</h1>
+      </header>
 
-      <div className="max-w-4xl mx-auto space-y-8 px-4 md:px-8 pb-12">
+      <div className="max-w-4xl mx-auto p-8 space-y-8 px-4 md:px-8 pb-12">
        {/* Account Info Card */}
-        <div className="bg-[#111] border border-white/10 rounded-2xl p-8 space-y-8 shadow-2xl">
+        <div className="bg-[#2a5a5a] border border-white/10 rounded-2xl p-8 space-y-8 shadow-2xl">
                 
         {/* Top Section: Avatar & Basic Info */}
           <div className="flex flex-col md:flex-row items-center gap-8">

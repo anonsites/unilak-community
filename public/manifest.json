@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "UNILAK",
+  "short_name": "UNILAK",
   "icons": [
     {
       "src": "/public/web-app-manifest-192x192.png",

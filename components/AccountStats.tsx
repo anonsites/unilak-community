@@ -22,6 +22,7 @@ export default function AccountStats({ joinedAt, totalReviews }: AccountStatsPro
           {totalReviews}
         </p>
       </div>
+      {/* Add points stats */}
     </div>
   );
 }

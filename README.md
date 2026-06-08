@@ -170,12 +170,8 @@ Phase 1 (MVP):
 * Admin dashboard ✅
 * SEO, Index, Seeding
 
-Phase 2 (beta):
-* real usage
-* scaling
-* Track the feedback
 
-Phase 3:
+Phase 2:
 
 * ongoing emprovements
 

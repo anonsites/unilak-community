@@ -103,7 +103,7 @@ export default function AuthForm({ next }: { next: string }) {
       )}
       <form onSubmit={handleAuth} className="space-y-4">
       <div>
-        <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Email</label>
+        <label className="block text-lg font-bold text-white/80 uppercase mb-1">Email</label>
         <input
           type="email"
           value={email}
@@ -114,7 +114,7 @@ export default function AuthForm({ next }: { next: string }) {
         />
       </div>
       <div>
-        <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Password</label>
+        <label className="block text-lg font-bold text-white/80 uppercase mb-1">Password</label>
         <div className="relative">
           <input
             type={showPassword ? 'text' : 'password'}
@@ -143,7 +143,7 @@ export default function AuthForm({ next }: { next: string }) {
       </div>
       {view === 'sign-up' && (
         <div className="animate-in fade-in slide-in-from-top-2 duration-200">
-          <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Who are you at UNILAK?</label>
+          <label className="block text-lg font-bold text-white/80 uppercase mb-1">Who are you at UNILAK?</label>
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
@@ -166,7 +166,7 @@ export default function AuthForm({ next }: { next: string }) {
             onChange={(e) => setRememberMe(e.target.checked)}
             className="w-4 h-4 rounded border-gray-700 bg-gray-800 text-blue-600 focus:ring-blue-500 focus:ring-offset-gray-900"
           />
-          <label htmlFor="rememberMe" className="text-sm text-gray-400 select-none cursor-pointer">
+          <label htmlFor="rememberMe" className="text-lg font-bold text-gray-400 select-none cursor-pointer">
             Remember me
           </label>
         </div>
@@ -190,19 +190,19 @@ export default function AuthForm({ next }: { next: string }) {
           {view === 'sign-in' ? (
             <>
               <span className="text-gray-300">Don&apos;t have an account? </span>
-              <span className="underline">Sign Up</span>
+              <span className="text-blue-400">Sign Up</span>
             </>
           ) : (
             <>
               <span className="text-gray-300">Already have an account? </span>
-              <span className="underline">Sign In</span>
+              <span className="text-blue-400">Sign In</span>
             </>
           )}
         </button>
       </div>
 
       <div className="text-center mt-8 pt-4 border-t border-gray-800">
-        <Link href="/" className="inline-flex items-center text-sm font-bold text-gray-300 hover:text-white transition-colors group">
+        <Link href="/" className="inline-flex items-center text-lg font-bold text-gray-300 hover:text-white transition-colors group">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>

@@ -78,12 +78,7 @@ export default async function ReviewsPage({
     <main className="min-h-screen bg-[#535350] text-white font-sans pb-24">
       {/* MINIMIZED HEADER */}
       <header className="w-full bg-gray-900/80 border-b border-gray-800 py-4 px-4 md:px-8 flex items-center justify-center sticky top-0 z-40 backdrop-blur-md relative">
-        <h1 className="text-xl font-bold tracking-wider text-white">UNILAK REVIEWS</h1>
-        <Link href="/" className="text-gray-400 hover:text-white transition-colors p-1 absolute right-4 md:right-8">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-          </svg>
-        </Link>
+        <h1 className="text-xl font-bold tracking-wider text-white">STUDENTS STORIES</h1>
       </header>
 
       <div className="w-full space-y-4 p-4 md:p-8">

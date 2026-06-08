@@ -23,7 +23,7 @@ export default async function AuthPage({
         <div className="w-full md:w-1/2 p-8 md:p-12">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-white tracking-wider mb-2">WELCOME</h1>
-            <p className="text-gray-400 text-sm">Join the UNILAK Community</p>
+            <p className="text-gray-400 text-lg mb-4">Join the UNILAK Community</p>
           </div>
           <AuthForm next={next || '/'} />
         </div>

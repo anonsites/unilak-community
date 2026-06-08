@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { timeAgo } from '@/lib/utils';
@@ -8,6 +8,7 @@ import { deleteReview } from '@/app/reviews/actions';
 import ReportModal from './ReportModal';
 import ConfirmModal from './ConfirmModal';
 import Avatar from './Avatar';
+import ReactionBar from './ReactionBar';
 import { ReviewWithRelations } from '@/lib/types';
 
 interface ReviewCardProps {
@@ -25,14 +26,38 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
   const [isDeleting, setIsDeleting] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
-  const isPositive = review.type === 'positive';
+  const [viewCount, setViewCount] = useState(review.view_count || 0);
   
-  // Styles based on type
-  const borderColor = isPositive 
-    ? 'border-blue-900/30 hover:border-blue-500/50' 
-    : 'border-orange-900/30 hover:border-orange-500/50';
+  // Track view on component mount
+  useEffect(() => {
+    const trackView = async () => {
+      try {
+        const sessionKey = `review_viewed_${review.id}`;
+        
+        // Check if already viewed in this session
+        if (typeof window !== 'undefined' && !sessionStorage.getItem(sessionKey)) {
+          const response = await fetch(`/api/reviews/${review.id}/view`, {
+            method: 'POST',
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            setViewCount(data.view_count);
+            sessionStorage.setItem(sessionKey, 'true');
+          }
+        } else {
+          // Already viewed in session, just use current count
+          setViewCount(review.view_count || 0);
+        }
+      } catch (error) {
+        console.error('Failed to track view:', error);
+      }
+    };
     
-  const typeColor = isPositive ? 'text-blue-400' : 'text-orange-400';
+    trackView();
+  }, [review.id, review.view_count]);
+
+
 
   const username = review.profiles_table?.username || 'Anonymous';
   const avatarLetter = username.startsWith('anon_')
@@ -101,7 +126,7 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
 
   return (
     <div 
-      className={`p-5 rounded-lg border transition-colors bg-gray-900 ${borderColor} group relative h-full flex flex-col cursor-default`}
+      className={`p-5 rounded-lg border transition-colors bg-gray-900 group relative h-full flex flex-col cursor-default`}
       onClick={(e) => e.stopPropagation()}
     >
       <div className="flex items-start gap-3 mb-4 relative z-10">
@@ -125,7 +150,7 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
               <div className="ml-auto flex items-center gap-1 relative z-10">
                 <button
                   onClick={handleShareClick}
-                  className="text-gray-500 hover:text-blue-400 px-2 py-1 rounded hover:bg-gray-800 transition-colors"
+                  className="text-white/80 hover:text-blue-400 px-2 py-1 rounded hover:bg-white/90 transition-colors"
                   title="Copy Link"
                 >
                   {isCopied ? (
@@ -194,20 +219,20 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
           </div>
 
           {/* Context Line */}
-          <p className="text-xs text-gray-500 mt-0.5">
+          <p className="text-lg text-gray-500 mt-0.5">
             is talking about <span className="text-gray-400">{review.topics_table?.name}</span> in UNILAK
           </p>
         </div>
       </div>
 
       {/* Message */}
-      <div className="mb-8 flex-grow">
+      <div className="mb-8 grow">
         <div className="relative">
           <p className="text-white text-lg whitespace-pre-wrap leading-relaxed font-medium">
             {isExpanded || !shouldTruncate ? review.content : `${review.content.slice(0, MAX_LENGTH)}...`}
           </p>
           {!isExpanded && shouldTruncate && (
-            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-12 bg-linear-to-t from-gray-900 to-transparent pointer-events-none" />
           )}
         </div>
         {shouldTruncate && (
@@ -223,18 +248,41 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
 
       {/* Recommendation */}
       {review.recommendation && (
-        <div className="mb-8">
-          <span className="text-xs text-gray-500 font-bold uppercase mr-2">RECOM:</span>
-          <span className="text-sm text-gray-400 italic">{review.recommendation}</span>
+        <div className="mb-6">
+          <span className="text-lg text-gray-500 font-bold uppercase mr-2">TODO:</span>
+          <span className="text-lg text-gray-400 italic">{review.recommendation}</span>
         </div>
       )}
 
+      {/* Reactions */}
+      <div className="mb-8 pb-4">
+        <ReactionBar
+          review={review}
+          currentUserId={currentUserId}
+          onReactionsChange={() => {
+            // Optional: Update parent component if needed
+          }}
+        />
+      </div>
+
       {/* Time - Bottom Right */}
-      <div className="absolute bottom-4 right-4 text-xs text-gray-500">
-        {review.subtopics_table?.name && (
-          <span className="mr-1">{review.subtopics_table.name},</span>
-        )}
-        {review.created_at ? timeAgo(review.created_at) : 'Just now'}
+      <div className="absolute bottom-4 right-4 text-sm text-white/80 flex items-center gap-3">
+        {/* View Count with Eye Icon */}
+        <div className="flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.107.424.107.639a1.012 1.012 0 0 1-.1.639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178a1.02 1.02 0 0 1-.037-.639Z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+          <span>{viewCount}</span>
+        </div>
+
+        {/* Subtopic and Time */}
+        <div>
+          {review.subtopics_table?.name && (
+            <span className="mr-1">{review.subtopics_table.name},</span>
+          )}
+          {review.created_at ? timeAgo(review.created_at) : 'Just now'}
+        </div>
       </div>
 
       {showReportModal && (

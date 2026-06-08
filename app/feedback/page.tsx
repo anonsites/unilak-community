@@ -59,16 +59,13 @@ export default function FeedbackPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
-        <header className="w-full p-4 flex justify-end">
-          <Link href="/" className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors" title="Back to Home">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-          </Link>
-        </header>
-        <main className="flex-grow flex items-center justify-center p-4">
-          <div className="bg-[#222] p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border border-white/10">
+      <div className="min-h-screen bg-[#535350] flex flex-col">
+      {/* MINIMIZED HEADER */}
+      <header className="w-full bg-gray-900/80 border-b border-gray-800 py-4 px-4 md:px-8 flex flex-col items-center justify-center sticky top-0 z-40 backdrop-blur-md">
+        <h1 className="text-xl font-bold tracking-wider text-white">SEND FEEDBACK</h1>
+      </header>
+        <main className="grow flex items-center justify-center p-4">
+          <div className="bg-[#2a5a5a] p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border border-white/10">
             <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -78,7 +75,7 @@ export default function FeedbackPage() {
             <p className="text-gray-400 mb-8">Thank you for helping us improve the Unilak Community platform.</p>
             <Link
               href="/"
-              className="block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-xl transition-colors w-full"
+              className="block bg-blue-400 hover:bg-blue-400 text-white font-bold py-3 px-6 rounded-xl transition-colors w-full"
             >
               Exit
             </Link>
@@ -89,7 +86,7 @@ export default function FeedbackPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex flex-col">
+    <div className="min-h-screen bg-[#535350] flex flex-col">
       <Toaster
         position="top-center"
         toastOptions={{
@@ -99,32 +96,26 @@ export default function FeedbackPage() {
           },
         }}
       />
-      <header className="w-full p-4 flex justify-end">
-        <Link href="/" className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors" title="Back to Home">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-          </svg>
-        </Link>
+      {/* MINIMIZED HEADER */}
+      <header className="w-full bg-gray-900/80 border-b border-gray-800 py-4 px-4 md:px-8 flex flex-col items-center justify-center sticky top-0 z-40 backdrop-blur-md">
+        <h1 className="text-xl font-bold tracking-wider text-white">SEND FEEDBACK</h1>
       </header>
-      <main className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <main className="grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl w-full space-y-8">
           <div className="text-center">
-            <h1 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-              We Value Your Feedback
-            </h1>
-            <p className="mt-4 text-lg text-gray-400">
+            <p className="mt-4 text-lg text-white">
               Have a suggestion, found a bug, or just want to share your thoughts? Let us know!
             </p>
           </div>
 
-          <div className="bg-[#222] py-8 px-4 shadow-2xl sm:rounded-2xl sm:px-10 border border-white/5">
+          <div className="bg-[#2a5a5a] py-8 px-4 shadow-2xl sm:rounded-2xl sm:px-10 border border-white/5">
             <form className="space-y-6" onSubmit={handleSubmit}>
               
               {/* Names & Email Row */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="names" className="block text-sm font-medium text-gray-300">
-                    Full Name
+                  <label htmlFor="names" className="block text-lg font-medium text-gray-300">
+                    Names:
                   </label>
                   <div className="mt-1">
                     <input
@@ -135,13 +126,13 @@ export default function FeedbackPage() {
                       value={formData.names}
                       onChange={handleChange}
                       className="appearance-none block w-full px-3 py-3 border border-gray-700 rounded-xl shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-[#1a1a1a] text-white sm:text-sm"
-                      placeholder="John Doe"
+                      placeholder="username..."
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                  <label htmlFor="email" className="block text-lg font-medium text-gray-300">
                     Email Address
                   </label>
                   <div className="mt-1">
@@ -162,7 +153,7 @@ export default function FeedbackPage() {
               {/* Role & Type Row */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="role" className="block text-sm font-medium text-gray-300">
+                  <label htmlFor="role" className="block text-lg font-medium text-white">
                     I am a...
                   </label>
                   <div className="mt-1">
@@ -184,7 +175,7 @@ export default function FeedbackPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="feedback_type" className="block text-sm font-medium text-gray-300">
+                  <label htmlFor="feedback_type" className="block text-lg font-medium text-white">
                     Feedback Type
                   </label>
                   <div className="mt-1">
@@ -208,8 +199,8 @@ export default function FeedbackPage() {
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300">
-                  Message
+                <label htmlFor="message" className="block text-lg font-medium text-white">
+                  Your Message
                 </label>
                 <div className="mt-1">
                   <textarea
@@ -229,11 +220,11 @@ export default function FeedbackPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all ${
+                  className={`w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-sm text-lg font-bold text-white bg-blue-400 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all ${
                     loading ? 'opacity-75 cursor-not-allowed' : ''
                   }`}
                 >
-                  {loading ? 'Submitting...' : 'Submit Feedback'}
+                  {loading ? 'Sending...' : 'Send Feedback'}
                 </button>
               </div>
             </form>

@@ -8,22 +8,28 @@ export default async function ModeratorDashboard() {
   const username = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Moderator';
 
   // Fetch stats
-  const [reviews, announcements, feedback, users, facts, reports] = await Promise.all([
+  const [reviews, announcements, feedback, users, facts, reports, classes, surveys, faqs] = await Promise.all([
     supabase.from('reviews_table').select('*', { count: 'exact', head: true }),
     supabase.from('announcement_requests_table').select('*', { count: 'exact', head: true }).eq('status', 'pending'),
     supabase.from('feedback_table').select('*', { count: 'exact', head: true }),
     supabase.from('profiles_table').select('*', { count: 'exact', head: true }),
     supabase.from('did_you_know_table').select('*', { count: 'exact', head: true }),
-    supabase.from('reports_table').select('*', { count: 'exact', head: true })
+    supabase.from('reports_table').select('*', { count: 'exact', head: true }),
+    supabase.from('classes_table').select('*', { count: 'exact', head: true }),
+    supabase.from('survey_responses_table').select('*', { count: 'exact', head: true }),
+    supabase.from('faq_table').select('*', { count: 'exact', head: true })
   ]);
 
   const stats = {
-    totalReviews: reviews.count || 0,
+    totalStories: reviews.count || 0,
     pendingAnnouncements: announcements.count || 0,
     totalFeedback: feedback.count || 0,
     totalUsers: users.count || 0,
     totalFacts: facts.count || 0,
-    pendingReports: reports.count || 0
+    pendingReports: reports.count || 0,
+    totalClasses: classes.count || 0,
+    totalSurveys: surveys.count || 0,
+    totalFAQs: faqs.count || 0
   };
 
   return (
@@ -56,19 +62,19 @@ export default async function ModeratorDashboard() {
 
       <div className="w-full px-4 md:px-8 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Reviews Card */}
+        {/* Student Stories Card */}
         <Link href="/moderator/reviews" className="block group">
           <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500/50 transition-all h-48 flex flex-col relative">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-blue-500/10 rounded-lg">
                 <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-200 group-hover:text-blue-400 transition-colors">Reviews</h3>
+              <h3 className="text-lg font-bold text-gray-200 group-hover:text-blue-400 transition-colors">Student Stories</h3>
             </div>
             <div className="flex-1 flex items-center justify-center">
-              <h3 className="text-4xl font-bold text-white">{stats.totalReviews}</h3>
+              <h3 className="text-4xl font-bold text-white">{stats.totalStories}</h3>
             </div>
             <div className="absolute bottom-4 right-6">
               <span className="text-xs font-semibold text-gray-500 uppercase">Total</span>
@@ -172,6 +178,66 @@ export default async function ModeratorDashboard() {
             </div>
             <div className="absolute bottom-4 right-6">
               <span className="text-xs font-semibold text-orange-400 bg-orange-500/10 px-2 py-1 rounded-full uppercase">Review</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* Classes Management Card */}
+        <Link href="/moderator/classes" className="block group">
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-emerald-500/50 transition-all h-48 flex flex-col relative">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-emerald-500/10 rounded-lg">
+                <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-200 group-hover:text-emerald-400 transition-colors">Classes</h3>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <h3 className="text-4xl font-bold text-white">{stats.totalClasses}</h3>
+            </div>
+            <div className="absolute bottom-4 right-6">
+              <span className="text-xs font-semibold text-gray-500 uppercase">Ongoing classes</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* Survey Responses Card */}
+        <Link href="/moderator/survey" className="block group">
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-rose-500/50 transition-all h-48 flex flex-col relative">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-rose-500/10 rounded-lg">
+                <svg className="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-200 group-hover:text-rose-400 transition-colors">Survey Responses</h3>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <h3 className="text-4xl font-bold text-white">{stats.totalSurveys}</h3>
+            </div>
+            <div className="absolute bottom-4 right-6">
+              <span className="text-xs font-semibold text-gray-500 uppercase">Contributions</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* FAQ Card */}
+        <Link href="/moderator/information" className="block group">
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-cyan-500/50 transition-all h-48 flex flex-col relative">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-cyan-500/10 rounded-lg">
+                <svg className="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-200 group-hover:text-cyan-400 transition-colors">FAQs</h3>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <h3 className="text-4xl font-bold text-white">{stats.totalFAQs}</h3>
+            </div>
+            <div className="absolute bottom-4 right-6">
+              <span className="text-xs font-semibold text-gray-500 uppercase">Information</span>
             </div>
           </div>
         </Link>

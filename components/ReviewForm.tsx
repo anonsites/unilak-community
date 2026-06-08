@@ -117,7 +117,7 @@ export default function ReviewForm() {
       {step === 1 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
           <div>
-            <h2 className="text-xl font-bold text-white mb-4">I&apos;m talking about:</h2>
+            <h2 className="text-xl font-bold text-white mb-4">What is your story/review about:</h2>
             <div className="flex flex-wrap gap-2">
               {loading ? <p className="text-gray-500">Loading topics...</p> : topics.map((t) => (
                 <button
@@ -171,7 +171,7 @@ export default function ReviewForm() {
       {/* STEP 2: TYPE */}
       {step === 2 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
-          <h2 className="text-xl font-bold text-white mb-4">My review is:</h2>
+          <h2 className="text-xl font-bold text-white mb-4">Choose positive for good experience and negative for bad experience:</h2>
           
           <div className="grid grid-cols-2 gap-4">
             <button
@@ -221,14 +221,13 @@ export default function ReviewForm() {
       {step === 3 && (
         <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
           <div>
-            <h2 className="text-xl font-bold text-white mb-2">Review / Claim / Issue</h2>
-            <p className="text-gray-500 text-sm mb-4">Be honest, respectful, and constructive.</p>
+            <h2 className="text-xl font-bold text-white mb-2">Tell us your story</h2>
             
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              placeholder="Write your review here..."
-              className="w-full h-40 bg-black border border-gray-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none resize-none"
+              placeholder="Write your story / review here..."
+              className="w-full h-40 bg-black border border-gray-700 rounded-xl p-4 text-white text-2xl focus:border-blue-500 outline-none resize-none"
             />
           </div>
 
@@ -239,7 +238,7 @@ export default function ReviewForm() {
               value={recommendation}
               onChange={(e) => setRecommendation(e.target.value)}
               placeholder="What should be done?"
-              className="w-full bg-black border border-gray-700 rounded-xl p-4 text-white focus:border-blue-500 outline-none"
+              className="w-full bg-black border border-gray-700 rounded-xl p-4 text-white text-2xl focus:border-blue-500 outline-none"
             />
           </div>
 
@@ -255,7 +254,7 @@ export default function ReviewForm() {
               onClick={handleSubmit}
               className="bg-blue-600 text-white px-8 py-3 rounded-full font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-500 transition-all shadow-lg shadow-blue-900/20"
             >
-              {submitting ? 'POSTING...' : 'POST REVIEW'}
+              {submitting ? 'POSTING...' : 'POST STORY'}
             </button>
           </div>
         </div>

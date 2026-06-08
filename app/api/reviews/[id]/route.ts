@@ -1,67 +1,37 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabaseServer';
 
-export async function PATCH(
+export async function POST(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const supabase = await createClient();
-  const { content, recommendation, type } = await req.json();
+  try {
+    const supabase = await createClient();
+    const { id } = await params;
 
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
+    // Use the RPC function to bypass RLS and update count atomically
+    const { error } = await supabase.rpc('increment_review_view_count', { 
+      p_review_id: id 
+    });
 
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (error) {
+      console.error('Error incrementing view count:', error);
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Return the updated count
+    const { data } = await supabase
+      .from('reviews_table')
+      .select('view_count')
+      .eq('id', id)
+      .single();
+
+    return NextResponse.json({ success: true, view_count: data?.view_count || 0 });
+  } catch (error) {
+    console.error('Unexpected error in view tracking:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
-
-  const { id } = await params;
-
-  const { error } = await supabase
-    .from('reviews_table')
-    .update({
-      content: content?.trim(),
-      recommendation: recommendation?.trim() || null,
-      type
-    })
-    .eq('id', id)
-    .eq('user_id', user.id);
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  return NextResponse.json({ success: true });
-}
-
-
-
-export async function DELETE(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const supabase = await createClient();
-
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  const { id } = await params;
-
-  const { error } = await supabase
-    .from('reviews_table')
-    .delete()
-    .eq('id', id)
-    .eq('user_id', user.id);
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  return NextResponse.json({ success: true });
 }
