@@ -13,7 +13,7 @@ export default function DonationCard() {
       >
         <div className="absolute inset-0 bg-pattern-grid opacity-10"></div>
         
-        <h2 className="relative z-10 text-4xl font-extrabold text-white leading-tight mb-4">
+        <h2 className="relative z-10 text-2xl font-extrabold text-white leading-tight mb-4">
           Have you found what you were looking for?
         </h2>
         

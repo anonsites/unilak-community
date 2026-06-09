@@ -376,7 +376,7 @@ export default function AnnouncementPage() {
                           onClick={() => setCommunityChatResponses(communityResponses)}
                           className="w-full text-left p-3 bg-yellow-950/50 rounded-lg hover:bg-yellow-900/50 transition-colors cursor-pointer flex items-center justify-between group"
                         >
-                          <div className="flex-1 min-w-0">
+                          <div className="flex-1 p-5 min-w-0">
                             <div className="flex items-center gap-2 mb-1">
                               <div className="w-6 h-6 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden shrink-0">
                                 <Avatar 
@@ -392,7 +392,7 @@ export default function AnnouncementPage() {
                                 {communityResponses.length > 1 && <span className="text-xs text-gray-400">and {communityResponses.length} others</span>}
                               </div>
                             </div>
-                            <p className="text-lg text-gray-300 truncate">{latestResponse.content}</p>
+                            <p className="text-lg text-white truncate">{latestResponse.content}</p>
                           </div>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors ml-2 shrink-0">
                             <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
@@ -469,7 +469,7 @@ export default function AnnouncementPage() {
         isOpen={!!activeChatRequest}
         onClose={() => setActiveChatRequest(null)}
         user={{
-          username: 'Admin@UNILAK',
+          username: 'Community_admin',
           avatarUrl: null
         }}
         messages={activeChatRequest?.announcement_responses_table || []}

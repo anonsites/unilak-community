@@ -97,7 +97,7 @@ export default async function AnnouncementsFeedPage() {
             <div className="rounded-xl border border-white/10 bg-black/20 px-6 py-12 text-center">
               <h2 className="text-xl font-bold">No announcements yet</h2>
               <p className="mt-2 text-2xl text-white">
-                Ask, report ot announce something with the UNILAK community.
+                Ask, report or announce something with the UNILAK community.
               </p>
               <Link
                 href="/announcements/manage"

@@ -28,7 +28,7 @@ export default function FindClassesWithSurvey() {
         onClick={() => setIsSurveyOpen(true)}
         className="group relative flex h-40 w-full flex-col justify-end overflow-hidden rounded-xl border border-white/10 bg-[#346596] p-5 shadow-lg shadow-black/20 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#25282c] text-left"
       > {/* Changed onClick to handleOpenSurveyClick */}
-        {/* Half-moon image container on top left - matched visually from your HomeCard */}
+        {/* Half-moon image container on top left - matched visually from HomeCard */}
         <div className="absolute -left-4 -top-4 flex h-28 w-28 items-center justify-center rounded-br-full bg-white pr-4 pb-4 transition-transform duration-300 group-hover:scale-110">
           <div className="relative h-14 w-14">
             <Image 

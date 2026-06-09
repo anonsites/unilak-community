@@ -11,7 +11,7 @@ interface ReportModalProps {
 }
 
 const REPORT_REASONS = [
-  "Say it as it is (Truthfulness)",
+  "Telling lies (untruthfulness)",
   "Disrespectful or offensive language",
   "Exposes personal information",
   "Fake, fraud, scam, or spam content",
@@ -44,8 +44,8 @@ export default function ReportModal({ reviewId, onClose }: ReportModalProps) {
       
       <div className="bg-gray-900 border border-gray-800 rounded-xl w-full max-w-md overflow-hidden shadow-2xl">
         <div className="p-6">
-          <h2 className="text-xl font-bold text-white mb-2">Report Review</h2>
-          <p className="text-gray-400 text-sm mb-6">
+          <h2 className="text-2xl font-bold text-white mb-2">Report this review</h2>
+          <p className="text-white/80 text-lg mb-6">
             Help us keep the community safe. Why are you reporting this review?
           </p>
 
@@ -60,7 +60,7 @@ export default function ReportModal({ reviewId, onClose }: ReportModalProps) {
                   onChange={(e) => setReason(e.target.value)}
                   className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 focus:ring-blue-600 focus:ring-offset-gray-800"
                 />
-                <span className="text-gray-300 text-sm">{r}</span>
+                <span className="text-white/80 text-lg">{r}</span>
               </label>
             ))}
           </div>

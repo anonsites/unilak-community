@@ -178,7 +178,7 @@ export default function AuthForm({ next }: { next: string }) {
           isValid && !loading ? 'bg-blue-600 hover:bg-blue-500 text-white hover:scale-[1.02]' : 'bg-gray-700 text-gray-500 cursor-not-allowed'
         }`}
       >
-        {loading ? 'PROCESSING...' : view === 'sign-in' ? 'SIGN IN' : 'SIGN UP'}
+        {loading ? 'PROCESSING...' : view === 'sign-in' ? 'LOG IN' : 'CREATE ACCOUNT'}
       </button>
       
       <div className="text-center mt-4">
@@ -189,20 +189,20 @@ export default function AuthForm({ next }: { next: string }) {
         >
           {view === 'sign-in' ? (
             <>
-              <span className="text-gray-300">Don&apos;t have an account? </span>
-              <span className="text-blue-400">Sign Up</span>
+              <span className="text-gray-300">Click here to</span>
+              <span className="text-blue-400">Create account</span>
             </>
           ) : (
             <>
-              <span className="text-gray-300">Already have an account? </span>
-              <span className="text-blue-400">Sign In</span>
+              <span className="text-gray-300">Already have account?</span>
+              <span className="text-blue-400">Log in</span>
             </>
           )}
         </button>
       </div>
 
-      <div className="text-center mt-8 pt-4 border-t border-gray-800">
-        <Link href="/" className="inline-flex items-center text-lg font-bold text-gray-300 hover:text-white transition-colors group">
+      <div className="text-center mt-8 pt-4 border-t border-white/80">
+        <Link href="/" className="inline-flex items-center text-lg font-bold text-white/80 hover:text-white transition-colors group">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
           </svg>

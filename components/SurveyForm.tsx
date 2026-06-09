@@ -39,14 +39,14 @@ function CustomDropdown({ id, label, value, options, onChange, disabled, placeho
           ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-cyan-500/50 active:scale-[0.99]'}
           ${isOpen ? 'ring-2 ring-cyan-500/30 border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.1)]' : ''}`}
       >
-        <span className={`${!value ? 'text-gray-500' : 'text-white'} truncate font-medium`}>
+        <span className={`${!value ? 'text-white/70' : 'text-white'} truncate font-medium`}>
           {selectedLabel}
         </span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-5 h-5 text-white transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
         >
           <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
         </svg>
@@ -60,7 +60,7 @@ function CustomDropdown({ id, label, value, options, onChange, disabled, placeho
           />
           <div className="absolute z-20 w-full mt-2 bg-[#121c31] border border-green-500 rounded-xl shadow-2xl overflow-hidden max-h-60 overflow-y-auto animate-in fade-in zoom-in-95 duration-100">
             {options.length === 0 ? (
-              <div className="px-4 py-3 text-sm text-gray-500 italic">No courses available, try later</div>
+              <div className="px-4 py-3 text-lg text-white/50 italic">No courses available, try again later</div>
             ) : (
               options.map((opt) => (
                 <button
@@ -71,7 +71,7 @@ function CustomDropdown({ id, label, value, options, onChange, disabled, placeho
                     onToggle();
                   }}
                   className={`w-full text-left px-4 py-5 text-base transition-colors hover:bg-cyan-500/10 hover:text-cyan-400
-                    ${value === opt.value ? 'bg-cyan-500/20 text-cyan-400 font-bold' : 'text-gray-300'}`}
+                    ${value === opt.value ? 'bg-cyan-500/20 text-cyan-400 font-bold' : 'text-white/70'}`}
                 >
                   {opt.label}
                 </button>
@@ -299,7 +299,7 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
             id="cpContact"
             value={cpContact}
             onChange={(e) => setCpContact(e.target.value)}
-            className="w-full bg-black/40 border border-white/70 rounded-xl px-4 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 transition-all font-medium"
+            className="w-full bg-black/40 border border-white/70 rounded-xl px-4 py-4 text-white placeholder-white/50 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 transition-all font-medium"
             placeholder="+250 7XX XXX XXX"
             required
           />

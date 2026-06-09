@@ -199,15 +199,15 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
                     {showReportMenu && (
                       <>
                         <div className="fixed inset-0 z-40" onClick={(e) => { e.stopPropagation(); setShowReportMenu(false); }} />
-                        <div className="absolute right-0 mt-1 w-40 bg-gray-800 rounded shadow-lg border border-gray-700 z-50 overflow-hidden">
+                        <div className="absolute right-0 mt-1 w-40 bg-gray-800 rounded shadow-lg border border-white z-50 overflow-hidden">
                           <button
                             onClick={(e) => {
                               setShowReportMenu(false);
                               handleReportClick(e);
                             }}
-                            className="w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition-colors"
+                            className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-700 hover:text-white transition-colors"
                           >
-                            Report this review
+                            Report this!
                           </button>
                         </div>
                       </>
@@ -219,7 +219,7 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
           </div>
 
           {/* Context Line */}
-          <p className="text-lg text-gray-500 mt-0.5">
+          <p className="text-xs text-gray-500 mt-0.5">
             is talking about <span className="text-gray-400">{review.topics_table?.name}</span> in UNILAK
           </p>
         </div>
@@ -228,7 +228,7 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
       {/* Message */}
       <div className="mb-8 grow">
         <div className="relative">
-          <p className="text-white text-lg whitespace-pre-wrap leading-relaxed font-medium">
+          <p className="text-white text-2xl whitespace-pre-wrap leading-relaxed font-medium">
             {isExpanded || !shouldTruncate ? review.content : `${review.content.slice(0, MAX_LENGTH)}...`}
           </p>
           {!isExpanded && shouldTruncate && (
@@ -250,7 +250,7 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
       {review.recommendation && (
         <div className="mb-6">
           <span className="text-lg text-gray-500 font-bold uppercase mr-2">TODO:</span>
-          <span className="text-lg text-gray-400 italic">{review.recommendation}</span>
+          <span className="text-lg text-white/80 italic">{review.recommendation}</span>
         </div>
       )}
 

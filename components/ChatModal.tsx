@@ -127,14 +127,14 @@ export default function ChatModal({
           onMouseDown={handleMouseDown}
           className="p-4 border-b border-white/5 flex justify-between items-center bg-[#111] md:cursor-move"
         >
-          {user.username === 'Community responses' || user.username === 'Admin@UNILAK' ? (
+          {user.username === 'Community responses' || user.username === 'Community_admin' ? (
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center ring-1 ring-blue-500/30">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-blue-400">
                   <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
                 </svg>
               </div>
-              {user.username === 'Admin@UNILAK' ? (
+              {user.username === 'Community_admin' ? (
                 <div className="flex items-center gap-1">
                   <h3 className="font-bold text-white">{user.username}</h3>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-blue-500"><path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" /></svg>
@@ -165,7 +165,7 @@ export default function ChatModal({
             const isSystem = msg.user_id === 'system';
             const isMod = msg.profiles_table?.role === 'moderator';
             const isMe = msg.user_id === currentUserId;
-            const displayName = isMod ? 'Admin@UNILAK' : (msg.profiles_table?.username || 'User');
+            const displayName = isMod ? 'Community_admin' : (msg.profiles_table?.username || 'User');
             
             if (isSystem) {
               return (

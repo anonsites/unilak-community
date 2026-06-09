@@ -147,7 +147,7 @@ export default function AnnouncementSection({ announcements, currentUserId, curr
               
               <div className="flex flex-col justify-between gap-4 flex-grow">
                 <div>
-                  <p className="text-gray-300 text-base leading-relaxed line-clamp-4">
+                  <p className="text-white text-lg font-bold leading-relaxed line-clamp-4">
                     {ann.message}
                   </p>
                 </div>
@@ -253,7 +253,7 @@ export default function AnnouncementSection({ announcements, currentUserId, curr
           <h2 className="text-white font-bold tracking-wide text-sm flex items-center gap-1">
             {message ? (username || 'Announcement') : (
               <>
-                Admin@UNILAK
+                Community_admin
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-blue-500">
                   <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
                 </svg>
