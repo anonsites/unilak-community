@@ -147,7 +147,7 @@ export default function AnnouncementSection({ announcements, currentUserId, curr
               
               <div className="flex flex-col justify-between gap-4 flex-grow">
                 <div>
-                  <p className="text-white text-lg font-bold leading-relaxed line-clamp-4">
+                  <p className="text-white text-lg leading-relaxed line-clamp-4">
                     {ann.message}
                   </p>
                 </div>

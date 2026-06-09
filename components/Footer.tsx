@@ -33,7 +33,7 @@ export default function Footer() {
               <span className="text-lg font-medium text-white transition-colors">MY ACCOUNT</span>
             </Link>
 
-            {/* Link 2: MY ANNOUNCEMENT */}
+            {/* Link 2: MY ANNOUNCEMENT 
             <Link href="/announcements/manage" className="flex items-center gap-5 p-5 hover:bg-[#2a2a2a] transition-all duration-300 border-b border-white/5">
               <div className="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,7 +41,7 @@ export default function Footer() {
                 </svg>
               </div>
               <span className="text-lg font-medium text-white transition-colors">MY ANNOUNCEMENTS</span>
-            </Link>
+            </Link> */}
 
             {/* Link 3: FEEDBACK */}
             <Link href="/feedback" className="flex items-center gap-5 p-5 hover:bg-[#2a2a2a] transition-all duration-300 border-b border-white/5">

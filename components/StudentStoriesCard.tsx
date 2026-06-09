@@ -4,7 +4,7 @@ export default function StudentStoriesCard() {
   return (
     <HomeCard
       href="/reviews"
-      title="Students Stories"
+      title="Read Stories"
       imageSrc="/images/studentstories.png"
       color="bg-rose-500/15"
     />
