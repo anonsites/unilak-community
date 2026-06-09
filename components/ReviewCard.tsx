@@ -191,7 +191,7 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
                   <div className="relative">
                     <button 
                       onClick={toggleReportMenu}
-                      className="text-gray-600 hover:text-gray-400 px-2 py-1 rounded hover:bg-gray-800 transition-colors"
+                      className="text-white hover:text-white/80 px-2 py-1 rounded hover:bg-gray-800 transition-colors"
                       title="More options"
                     >
                       •••
@@ -228,7 +228,7 @@ export default function ReviewCard({ review, showActions = true, currentUserId, 
       {/* Message */}
       <div className="mb-8 grow">
         <div className="relative">
-          <p className="text-white text-2xl whitespace-pre-wrap leading-relaxed font-medium">
+          <p className="text-white text-lg whitespace-pre-wrap leading-relaxed font-medium">
             {isExpanded || !shouldTruncate ? review.content : `${review.content.slice(0, MAX_LENGTH)}...`}
           </p>
           {!isExpanded && shouldTruncate && (

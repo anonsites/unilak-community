@@ -26,7 +26,7 @@ export default function HomeCard({ imageSrc, title, href, color }: HomeCardProps
         </div>
       </div>
       <div className="relative z-10">
-        <h2 className="text-lg text-bold tracking-tight text-white">{title}</h2>
+        <h2 className="text-lg font-bold tracking-tight text-white">{title}</h2>
       </div>
     </Link>
   );

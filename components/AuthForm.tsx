@@ -184,18 +184,18 @@ export default function AuthForm({ next }: { next: string }) {
       <div className="text-center mt-4">
         <button
           type="button"
-          onClick={() => setView(view === 'sign-in' ? 'sign-up' : 'sign-in')}
+          onClick={() => setView(view === 'sign-in' ? 'sign-up' : 'sign-up')}
           className="text-lg font-bold text-white hover:text-blue-400 transition-colors"
         >
           {view === 'sign-in' ? (
             <>
               <span className="text-gray-300">Click here to</span>
-              <span className="text-blue-400">Create account</span>
+              <span className="text-blue-400"> Create account</span>
             </>
           ) : (
             <>
               <span className="text-gray-300">Already have account?</span>
-              <span className="text-blue-400">Log in</span>
+              <span className="text-blue-400"> Log in</span>
             </>
           )}
         </button>

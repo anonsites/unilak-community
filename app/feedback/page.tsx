@@ -103,7 +103,7 @@ export default function FeedbackPage() {
       <main className="grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl w-full space-y-8">
           <div className="text-center">
-            <p className="mt-4 text-lg text-white">
+            <p className="mt-4 text-lg text-white font-bold">
               Have a suggestion, found a bug, or just want to share your thoughts? Let us know!
             </p>
           </div>
@@ -114,7 +114,7 @@ export default function FeedbackPage() {
               {/* Names & Email Row */}
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="names" className="block text-lg font-medium text-gray-300">
+                  <label htmlFor="names" className="block text-lg font-medium text-white">
                     Names:
                   </label>
                   <div className="mt-1">
@@ -132,7 +132,7 @@ export default function FeedbackPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-lg font-medium text-gray-300">
+                  <label htmlFor="email" className="block text-lg font-medium text-white">
                     Email Address
                   </label>
                   <div className="mt-1">
@@ -210,8 +210,8 @@ export default function FeedbackPage() {
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    className="appearance-none block w-full px-3 py-3 border border-gray-700 rounded-xl shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-[#1a1a1a] text-white sm:text-sm resize-none"
-                    placeholder="Tell us more..."
+                    className="appearance-none block w-full px-3 py-3 border border-gray-700 rounded-xl shadow-sm placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-[#1a1a1a] text-white text-lg resize-none"
+                    placeholder="Type here..."
                   />
                 </div>
               </div>

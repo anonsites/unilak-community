@@ -23,9 +23,9 @@ export default function DonationCard() {
 
         <button
           onClick={() => setIsOpen(true)}
-          className="relative z-10 w-full py-3 px-6 bg-blue-400 text-white font-bold rounded-lg hover:bg-indigo-50 transition-colors shadow-lg active:scale-95"
+          className="relative z-10 w-full py-3 px-6 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-400 transition-colors shadow-lg active:scale-95"
         >
-          Yes
+          Yes! Thanks
         </button>
       </div>
 

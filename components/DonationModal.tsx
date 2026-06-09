@@ -51,7 +51,7 @@ export default function DonationModal({ isOpen, onClose, onContinue }: DonationM
 
             <div className="space-y-2">
               <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight uppercase">Support us</h2>
-              <p className="text-white text-lg font-bold  leading-relaxed">
+              <p className="text-white text-lg leading-relaxed">
                 We are two students dedicated to keeping this platform running. Your donation covers costs and keeps the community alive.
               </p>
             </div>
@@ -81,7 +81,8 @@ export default function DonationModal({ isOpen, onClose, onContinue }: DonationM
                 onClick={handleDonate}
                 className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white py-3 rounded-2xl font-black tracking-widest transition-all duration-200 shadow-lg active:scale-95 text-base flex items-center justify-center gap-2 uppercase"
               >
-                Donate Now
+                <Image src="/images/mtn-icon.png" alt="MTN Icon" width={32} height={32} className="rounded-lg" />
+                <span>Donate Now</span>
               </button>
               <button 
                 onClick={onContinue || onClose} 

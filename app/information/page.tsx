@@ -211,9 +211,9 @@ export default function InformationPage() {
               <div className="flex flex-wrap justify-center gap-4">
                 <button
                   onClick={() => setShowDonationModal(true)}
-                  className="px-6 py-2.5 text-lg bg-blue-400 hover:bg-blue-300 rounded-lg transition-colors"
+                  className="px-6 py-2.5 text-lg bg-blue-600 hover:bg-blue-400 rounded-lg transition-colors"
                 >
-                  Yes! Donate
+                  Yes! Thanks
                 </button>
               </div>
             </div>
