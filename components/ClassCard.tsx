@@ -49,14 +49,14 @@ export default function ClassCard({ classItem, compact = false }: ClassCardProps
         )}
 
         <div className={`mt-4 flex items-center gap-2 ${compact ? 'text-sm' : 'text-xs'}`}>
-          <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-gray-200">
-            {classItem.classroom || 'Online'}
+          <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-cyan-200">
+            {classItem.classroom || 'Ongoing'}
           </span>
-          <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-gray-200">
+          <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-cyan-200">
             Starts: {formatDate(classItem.start_date)}
           </span>
           {classItem.cat_date && (
-            <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-gray-200">
+            <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-cyan-200">
               CAT: {formatDate(classItem.cat_date)}
             </span>
           )}

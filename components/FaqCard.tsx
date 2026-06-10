@@ -4,7 +4,7 @@ export default function FaqCard() {
   return (
     <HomeCard
       href="/information"
-      title="Ask Here"
+      title="Q&A"
       imageSrc="/images/learnmore.png"
       color="bg-emerald-500/15"
     />

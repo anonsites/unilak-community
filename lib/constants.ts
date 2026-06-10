@@ -9,7 +9,7 @@ export const FACULTIES = [
 
 export const DEPARTMENTS: Record<string, string[]> = {
     //these are actual UNILAK departments
-  'Faculty of CIS': ['SE', 'IT Net', 'ISM'],
+  'Faculty of CIS': ['SE', 'IT Net','IT Mult', 'ISM'],
   'Faculty of ESM': ['Finance', 'Marketing', 'HRM', 'Accounting', 'Economics', 'Cooperatives'],
   'Faculty of Law': ['Law'],
   'Faculty of Education': [], //I don't know the departments in the faculty of education, so I left it blank
