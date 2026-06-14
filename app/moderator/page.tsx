@@ -49,38 +49,12 @@ export default async function ModeratorDashboard() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
               </svg>
             </Link>
-
-            {/* Home Icon */}
-            <Link href="/" className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors" title="Back to Home">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            </Link>
           </div>
         </div>
       </div>
 
       <div className="w-full px-4 md:px-8 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Student Stories Card */}
-        <Link href="/moderator/reviews" className="block group">
-          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500/50 transition-all h-48 flex flex-col relative">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-blue-500/10 rounded-lg">
-                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-200 group-hover:text-blue-400 transition-colors">Students Stories</h3>
-            </div>
-            <div className="flex-1 flex items-center justify-center">
-              <h3 className="text-4xl font-bold text-white">{stats.totalStories}</h3>
-            </div>
-            <div className="absolute bottom-4 right-6">
-              <span className="text-xs font-semibold text-gray-500 uppercase">Total</span>
-            </div>
-          </div>
-        </Link>
 
         {/* Pending Requests Card */}
         <Link href="/moderator/announcements" className="block group">
@@ -98,6 +72,66 @@ export default async function ModeratorDashboard() {
             </div>
             <div className="absolute bottom-4 right-6">
               <span className="text-xs font-semibold text-yellow-400 bg-yellow-500/10 px-2 py-1 rounded-full uppercase">Action Needed</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* Survey Responses Card */}
+        <Link href="/moderator/survey" className="block group">
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-rose-500/50 transition-all h-48 flex flex-col relative">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-rose-500/10 rounded-lg">
+                <svg className="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-200 group-hover:text-rose-400 transition-colors">Survey Responses</h3>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <h3 className="text-4xl font-bold text-white">{stats.totalSurveys}</h3>
+            </div>
+            <div className="absolute bottom-4 right-6">
+              <span className="text-xs font-semibold text-gray-500 uppercase">Contributions</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* Classes Management Card */}
+        <Link href="/moderator/classes" className="block group">
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-emerald-500/50 transition-all h-48 flex flex-col relative">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-emerald-500/10 rounded-lg">
+                <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-200 group-hover:text-emerald-400 transition-colors">Classes</h3>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <h3 className="text-4xl font-bold text-white">{stats.totalClasses}</h3>
+            </div>
+            <div className="absolute bottom-4 right-6">
+              <span className="text-xs font-semibold text-gray-500 uppercase">Ongoing classes</span>
+            </div>
+          </div>
+        </Link>
+
+        {/* Student Stories Card */}
+        <Link href="/moderator/reviews" className="block group">
+          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-blue-500/50 transition-all h-48 flex flex-col relative">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-blue-500/10 rounded-lg">
+                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-gray-200 group-hover:text-blue-400 transition-colors">Students Stories</h3>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <h3 className="text-4xl font-bold text-white">{stats.totalStories}</h3>
+            </div>
+            <div className="absolute bottom-4 right-6">
+              <span className="text-xs font-semibold text-gray-500 uppercase">Total</span>
             </div>
           </div>
         </Link>
@@ -178,46 +212,6 @@ export default async function ModeratorDashboard() {
             </div>
             <div className="absolute bottom-4 right-6">
               <span className="text-xs font-semibold text-orange-400 bg-orange-500/10 px-2 py-1 rounded-full uppercase">Review</span>
-            </div>
-          </div>
-        </Link>
-
-        {/* Classes Management Card */}
-        <Link href="/moderator/classes" className="block group">
-          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-emerald-500/50 transition-all h-48 flex flex-col relative">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-emerald-500/10 rounded-lg">
-                <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-200 group-hover:text-emerald-400 transition-colors">Classes</h3>
-            </div>
-            <div className="flex-1 flex items-center justify-center">
-              <h3 className="text-4xl font-bold text-white">{stats.totalClasses}</h3>
-            </div>
-            <div className="absolute bottom-4 right-6">
-              <span className="text-xs font-semibold text-gray-500 uppercase">Ongoing classes</span>
-            </div>
-          </div>
-        </Link>
-
-        {/* Survey Responses Card */}
-        <Link href="/moderator/survey" className="block group">
-          <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-rose-500/50 transition-all h-48 flex flex-col relative">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-rose-500/10 rounded-lg">
-                <svg className="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-200 group-hover:text-rose-400 transition-colors">Survey Responses</h3>
-            </div>
-            <div className="flex-1 flex items-center justify-center">
-              <h3 className="text-4xl font-bold text-white">{stats.totalSurveys}</h3>
-            </div>
-            <div className="absolute bottom-4 right-6">
-              <span className="text-xs font-semibold text-gray-500 uppercase">Contributions</span>
             </div>
           </div>
         </Link>

@@ -106,7 +106,6 @@ function CreateClassForm() {
       if (error) throw error;
 
       showToast('Class created successfully!', 'success');
-      setTimeout(() => router.push('/moderator/classes'), 1500);
     } catch (error: any) {
       console.error('Error creating class:', error);
       showToast(error.message || 'Failed to create class', 'error');
@@ -115,13 +114,13 @@ function CreateClassForm() {
     }
   };
 
-  const inputClass = "w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors";
-  const labelClass = "block text-sm font-medium text-gray-400 mb-1";
+  const inputClass = "w-full px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-lg text-sm text-white focus:outline-none focus:border-blue-500 transition-colors";
+  const labelClass = "block text-xs font-medium text-gray-400 mb-1";
 
   if (loading) return <div className="min-h-screen bg-[#535350] flex items-center justify-center text-white">Loading class...</div>;
 
   return (
-    <div className="min-h-screen bg-[#535350] p-4 md:p-8">
+    <div className="bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-lg mb-8 flex justify-between items-center gap-4">
       {toast && (
         <div className={`fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-2xl font-bold text-white ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'}`}>
           {toast.msg}
@@ -132,12 +131,12 @@ function CreateClassForm() {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-white uppercase tracking-wider">Create New Class</h1>
           <Link href="/moderator/classes" className="text-gray-400 hover:text-white flex items-center gap-2">
-            Back to List
+            Back to classes
           </Link>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-gray-900 rounded-2xl shadow-2xl p-6 md:p-10 border border-gray-800 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="bg-gray-900 rounded-2xl shadow-2xl p-5 md:p-8 border border-gray-800 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="md:col-span-2">
               <label className={labelClass}>Course Name *</label>
               <input type="text" name="course_name" required value={formData.course_name} onChange={handleChange} className={inputClass} />
@@ -164,7 +163,7 @@ function CreateClassForm() {
               <label className={labelClass}>Lecturer Name</label>
               <input type="text" name="lecturer" value={formData.lecturer} onChange={handleChange} className={inputClass} />
             </div>
-            <div>
+            <div className="md:col-span-1">
               <label className={labelClass}>Department *</label>
               <select 
                 name="department" 
@@ -180,9 +179,6 @@ function CreateClassForm() {
                 ))}
               </select>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-800">
             <div>
               <label className={labelClass}>Program *</label>
               <select name="program" required value={formData.program} onChange={handleChange} className={inputClass}>
@@ -212,7 +208,7 @@ function CreateClassForm() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-800">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-gray-800">
             <div>
               <label className={labelClass}>Start Date</label>
               <input type="date" name="start_date" value={formData.start_date} onChange={handleChange} className={inputClass} />
@@ -231,7 +227,7 @@ function CreateClassForm() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-gray-800">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 pt-4 border-t border-gray-800">
             <div className="md:col-span-2">
               <label className={labelClass}>Classroom Location</label>
               <input type="text" name="classroom" placeholder="e.g. Room 204, Main Campus" value={formData.classroom} onChange={handleChange} className={inputClass} />
@@ -246,11 +242,11 @@ function CreateClassForm() {
             </div>
           </div>
 
-          <div className="pt-8">
+          <div className="pt-4">
             <button
               type="submit"
               disabled={saving}
-              className={`w-full py-4 rounded-xl font-bold text-white uppercase tracking-widest ${saving ? 'bg-gray-700' : 'bg-blue-600'}`}
+              className={`w-full py-3 rounded-xl font-bold text-white uppercase tracking-widest ${saving ? 'bg-gray-700' : 'bg-blue-600'}`}
             >
               {saving ? 'Creating...' : 'Create Class'}
             </button>
