@@ -43,9 +43,9 @@ export default function JSONImportModal({ isOpen, onClose, onSuccess }: JSONImpo
       onSuccess();
       onClose();
       setJsonInput('');
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error importing JSON:', err);
-      setError(err.message || 'Database error occurred during import');
+      setError(err instanceof Error ? err.message : 'Database error occurred during import');
     } finally {
       setLoading(false);
     }

@@ -92,6 +92,7 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
   const [intake, setIntake] = useState('');
   const [courseId, setCourseId] = useState('');
   const [courseName, setCourseName] = useState('');
+  const [manualCourseName, setManualCourseName] = useState('');
   const [cpContact, setCpContact] = useState('');
 
   const [availableCourses, setAvailableCourses] = useState<UniversityClass[]>([]);
@@ -140,10 +141,12 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
     }
     fetchCourses();
   }, [faculty, department, program, yearOfStudy, intake]);
-
+  
   const handleCourseChange = (val: string) => {
     setCourseId(val);
     const selected = availableCourses.find(c => c.id === val);
+    // Clear manual course name if a dropdown option is selected
+    setManualCourseName('');
     if (selected) {
       setCourseName(selected.course_name);
     } else {
@@ -156,20 +159,34 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
     setIsSubmitting(true);
     setError('');
 
-    if (!faculty || !department || !program || !yearOfStudy || !intake || !courseId || !cpContact) {
+    // Validate required fields
+    if (!faculty || !department || !program || !yearOfStudy || !intake || !cpContact) {
       setError('Please fill in all required fields.');
+      setIsSubmitting(false);
+      return;
+    }
+    // Validate course selection or manual input
+    if (availableCourses.length > 0 && !courseId) {
+      setError('Please select a course from the list.');
+      setIsSubmitting(false);
+      return;
+    } else if (availableCourses.length === 0 && !manualCourseName.trim()) {
+      setError('Please enter the course name manually.');
       setIsSubmitting(false);
       return;
     }
 
     try {
       const supabase = createClient();
+      const courseData = availableCourses.length > 0
+        ? { course_id: courseId, course_name: courseName }
+        : { course_id: null, course_name: manualCourseName.trim() };
+
       const { error: submitError } = await supabase
         .from('survey_responses_table')
         .insert({
           user_id: null,
-          course_id: courseId,
-          course_name: courseName,
+          ...courseData,
           department: department,
           program: program,
           intake: intake,
@@ -277,23 +294,40 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
           }}
         />
 
-        <CustomDropdown
-          id="course"
-          label="6. What course are you taking?"
-          placeholder={isLoadingCourses ? 'Loading courses...' : 'Select Course'}
-          value={courseId}
-          disabled={!intake || isLoadingCourses}
-          isOpen={activeDropdown === 'course'}
-          onToggle={() => setActiveDropdown(activeDropdown === 'course' ? null : 'course')}
-          options={availableCourses.map(c => ({ 
-            label: `${c.course_name} (Lecturer: ${c.lecturer || 'TBA'})`, 
-            value: c.id 
-          }))}
-          onChange={handleCourseChange}
-        />
+        <div>
+          <label htmlFor="course" className="block text-lg font-bold text-white mb-2 tracking-tight">6. What course is your class taking?</label>
+          {isLoadingCourses ? (
+            <div className="w-full bg-black/40 border border-white/70 rounded-xl px-4 py-4 text-white/70 italic">Loading courses...</div>
+          ) : availableCourses.length > 0 ? (
+            <CustomDropdown
+              id="course"
+              label=""
+              placeholder="Select Course"
+              value={courseId}
+              disabled={!intake}
+              isOpen={activeDropdown === 'course'}
+              onToggle={() => setActiveDropdown(activeDropdown === 'course' ? null : 'course')}
+              options={availableCourses.map(c => ({ 
+                label: `${c.course_name} (Lecturer: ${c.lecturer || 'TBA'})`, 
+                value: c.id 
+              }))}
+              onChange={handleCourseChange}
+            />
+          ) : (
+            <input
+              type="text"
+              id="manualCourseName"
+              value={manualCourseName}
+              onChange={(e) => setManualCourseName(e.target.value)}
+              className="w-full bg-black/40 border border-white/70 rounded-xl px-4 py-4 text-white placeholder-white/50 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/30 transition-all font-medium"
+              placeholder="Enter course name"
+              required
+            />
+          )}
+        </div>
 
         <div>
-          <label htmlFor="cpContact" className="block text-lg font-bold text-white mb-2 tracking-tight">7. Your CP phone number</label>
+          <label htmlFor="cpContact" className="block text-lg font-bold text-white mb-2 tracking-tight">7. Tell us your CP phone number</label>
           <input
             type="tel"
             id="cpContact"
@@ -312,7 +346,7 @@ export default function SurveyForm({ onClose, onSuccess }: SurveyFormProps) {
 
         <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4">
           <button
-            type="button"
+            type="button" // Changed to type="button" to prevent form submission
             onClick={onClose}
             className="px-6 py-3.5 text-lg font-bold text-white rounded-xl bg-white/35 hover:bg-white/10 transition-colors uppercase tracking-widest"
           >

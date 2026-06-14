@@ -9,7 +9,7 @@ import { timeAgo } from '@/lib/utils';
 type SurveyResponse = Database['public']['Tables']['survey_responses_table']['Row'] & {
   classes_table: {
     whatsapp_link: string | null;
-    cp_contact: string | null;
+    cp_contact: string | null; // Add cp_contact to classes_table type for comparison
   } | null;
 };
 
@@ -34,15 +34,14 @@ export default function SurveyManagementPage() {
         .select(`
           *,
           classes_table (
-            whatsapp_link,
-            cp_contact
+            whatsapp_link
           )
         `)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setResponses(data as SurveyResponse[]);
-    } catch (error: unknown) {
+      setResponses(data as any);
+    } catch (error: any) {
       console.error('Error fetching survey responses:', error);
       showToast('Failed to load survey data', 'error');
     } finally {
@@ -67,8 +66,8 @@ export default function SurveyManagementPage() {
       
       setResponses(prev => prev.filter(r => r.id !== id));
       showToast('Response deleted successfully', 'success');
-    } catch (error: unknown) {
-      showToast(error instanceof Error ? error.message : 'Failed to delete response', 'error');
+    } catch (error: any) {
+      showToast(error.message || 'Failed to delete response', 'error');
     }
   };
 
@@ -78,15 +77,21 @@ export default function SurveyManagementPage() {
       return;
     }
 
-    if (!confirm(`Update official CP contact for "${response.course_name}" to ${response.cp_contact}?`)) return;
+    // Check if the course_id is null (manually entered course)
+    if (!response.course_id) {
+      showToast('Cannot confirm contact for manually entered courses. Please add the course to the classes table first.', 'error');
+      return;
+    }
+
+    if (!confirm(`Update official CP contact for "${response.course_name}" (ID: ${response.course_id}) to ${response.cp_contact}?`)) return;
 
     try {
-      const { error } = await supabase
+      const { error: updateError } = await supabase
         .from('classes_table')
         .update({ cp_contact: response.cp_contact })
         .eq('id', response.course_id);
 
-      if (error) throw error;
+      if (updateError) throw updateError;
       showToast('Class contact updated successfully', 'success');
     } catch (error: any) {
       showToast(error.message || 'Failed to update class contact', 'error');
@@ -174,7 +179,15 @@ export default function SurveyManagementPage() {
                       <td className="px-6 py-4">
                         <div className="flex justify-center gap-2">
                           <button onClick={() => handleConfirm(resp)} className="p-2 bg-emerald-500/10 text-emerald-500 rounded-lg border border-emerald-500/20 hover:bg-emerald-500/20 transition-all" title="Confirm & Update Contact">
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                            {/* Disable button if course_id is null or if cp_contact is already the same */}
+                            <button
+                              onClick={() => handleConfirm(resp)}
+                              className={`p-2 rounded-lg border transition-all ${resp.course_id && resp.cp_contact !== resp.classes_table?.cp_contact ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20 hover:bg-emerald-500/20' : 'bg-gray-700/50 text-gray-400 border-gray-600/50 cursor-not-allowed'}`}
+                              title={resp.course_id ? (resp.cp_contact === resp.classes_table?.cp_contact ? 'Contact already up-to-date' : 'Confirm & Update Contact') : 'Cannot confirm contact for manually entered courses'}
+                              disabled={!resp.course_id || resp.cp_contact === resp.classes_table?.cp_contact}
+                            >
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                            </button>
                           </button>
                           <button onClick={() => handleDelete(resp.id)} className="p-2 bg-red-500/10 text-red-500 rounded-lg border border-red-500/20 hover:bg-red-500/20 transition-all" title="Delete Response">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>

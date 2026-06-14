@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import FindClassesClient from './FindClassesClient';
+import SurveyFAB from '@/components/SurveyFAB';
 
 export const metadata: Metadata = {
   title: 'Find Campus Courses',
@@ -14,6 +15,7 @@ export default function FindClassesPage() {
         <h1 className="text-xl font-bold tracking-wider text-white">FIND A CLASS</h1>
       </header>
       <FindClassesClient />
+      <SurveyFAB />
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function FindClassesWithSurvey() {
   return (
     <>
       <button
-        onClick={() => setIsSurveyOpen(true)}
+        onClick={handleOpenSurveyClick}
         className="group relative flex h-40 w-full flex-col justify-end overflow-hidden rounded-xl border border-white/10 bg-[#346596] p-5 shadow-lg shadow-black/20 transition hover:-translate-y-1 hover:border-white/20 hover:bg-[#25282c] text-left"
       > {/* Changed onClick to handleOpenSurveyClick */}
         {/* Half-moon image container on top left - matched visually from HomeCard */}
