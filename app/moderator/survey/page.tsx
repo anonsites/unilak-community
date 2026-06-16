@@ -107,7 +107,7 @@ export default function SurveyManagementPage() {
       )}
 
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        <div className="bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-lg mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold uppercase tracking-wider">Survey Contributions</h1>
             <p className="text-gray-400 mt-1">Check student-submitted class info and verify details.</p>

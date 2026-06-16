@@ -73,14 +73,26 @@ export async function GET(req: Request) {
   const department = url.searchParams.get('department')?.trim();
   const program = url.searchParams.get('program')?.trim();
   const yearOfStudy = url.searchParams.get('year_of_study')?.trim();
+  const sort = url.searchParams.get('sort')?.trim(); // Extract sort parameter
 
   let query = supabase
     .from('classes_table')
     .select(CLASS_COLUMNS, { count: 'exact' })
-    .gte('end_date', new Date().toISOString().split('T')[0])
-    .order('start_date', { ascending: true, nullsFirst: false })
-    .order('course_name', { ascending: true })
-    .range(offset, offset + limit - 1);
+    .gte('end_date', new Date().toISOString().split('T')[0]);
+
+  // Apply sorting based on the 'sort' parameter
+  if (sort === 'updated') {
+    query = query.order('updated_at', { ascending: false }); // Latest created/updated first
+  } else if (sort === 'course') {
+    query = query.order('course_name', { ascending: true });
+  } else if (sort === 'department') {
+    query = query.order('department', { ascending: true });
+  } else {
+    // Default sorting if no sort parameter or unknown sort value
+    query = query.order('start_date', { ascending: true, nullsFirst: false }).order('course_name', { ascending: true });
+  }
+
+  query = query.range(offset, offset + limit - 1);
 
   if (faculty) query = query.eq('faculty', faculty);
   if (department) query = query.eq('department', department);

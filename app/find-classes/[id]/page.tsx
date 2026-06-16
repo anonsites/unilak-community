@@ -199,7 +199,7 @@ export default async function ClassDetailPage({
               <div className="mt-4 space-y-3 border-l border-white/10 pl-6">
                 <p className="text-base">
                   <span className="text-white font-bold">Classroom:</span> 
-                  <span className="text-cyan-200 font-semibold ml-2">{classItem.classroom || 'Not announced'}</span>
+                  <span className="text-cyan-200 font-semibold ml-2">{classItem.classroom || 'Unknown yet'}</span>
                 </p>
                 <p className="text-base">
                   <span className="text-white font-bold">CP contact:</span> 
@@ -213,7 +213,7 @@ export default async function ClassDetailPage({
                       {classItem.cp_contact}
                     </a>
                   ) : (
-                    <span className="ml-2 text-cyan-200 font-semibold">Not announced</span>
+                    <span className="ml-2 text-cyan-200 font-semibold">Unknown yet</span>
                   )}
                 </p>
               </div>

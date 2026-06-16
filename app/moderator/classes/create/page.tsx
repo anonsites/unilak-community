@@ -120,7 +120,7 @@ function CreateClassForm() {
   if (loading) return <div className="min-h-screen bg-[#535350] flex items-center justify-center text-white">Loading class...</div>;
 
   return (
-    <div className="bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-lg mb-8 flex justify-between items-center gap-4">
+    <div className="min-h-screen bg-[#535350] p-4 md:p-6 w-full">
       {toast && (
         <div className={`fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-2xl font-bold text-white ${toast.type === 'success' ? 'bg-green-600' : 'bg-red-600'}`}>
           {toast.msg}
@@ -128,7 +128,7 @@ function CreateClassForm() {
       )}
 
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
+        <div className="bg-gray-900 text-white p-4 md:p-6 rounded-xl shadow-lg mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <h1 className="text-3xl font-bold text-white uppercase tracking-wider">Create New Class</h1>
           <Link href="/moderator/classes" className="text-gray-400 hover:text-white flex items-center gap-2">
             Back to classes

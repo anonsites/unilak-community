@@ -12,14 +12,24 @@ function formatDate(value: string | null) {
 }
 
 export default function ClassCard({ classItem, compact = false }: ClassCardProps) {
+  const isNew = classItem.created_at
+    ? (new Date().getTime() - new Date(classItem.created_at).getTime()) < 24 * 60 * 60 * 1000
+    : false;
+
   return (
     <Link
       href={`/find-classes/${classItem.id}`}
-      className={`block rounded-lg border border-white/50 bg-gray-800 p-5 shadow-lg transition hover:border-cyan-500/50 hover:shadow-cyan-500/20 ${
+      className={`block relative rounded-lg border border-white/50 bg-gray-800 p-5 shadow-lg transition hover:border-cyan-500/50 hover:shadow-cyan-500/20 ${
         compact ? 'flex items-center gap-4' : ''
       }`}
     >
-      <div className={`${compact ? 'flex-grow' : ''}`}>
+      {isNew && (
+        <span className="absolute top-3 right-3 z-10 rounded-full bg-green-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-lg">
+          New
+        </span>
+      )}
+
+      <div className={`${compact ? 'grow' : ''}`}>
         <p className="text-xs font-bold uppercase tracking-wide text-cyan-300">
           {classItem.faculty} - {classItem.department}
         </p>
@@ -30,37 +40,31 @@ export default function ClassCard({ classItem, compact = false }: ClassCardProps
         {!compact && (
           <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
             <div className="rounded-md border border-gray-700/50 bg-black/15 p-3">
-              <p className="text-xs font-bold uppercase tracking-wide text-white">Program</p>
               <p className="mt-1 font-semibold text-cyan-200">{classItem.program}</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-white">Program</p>
             </div>
             <div className="rounded-md border border-gray-700/50 bg-black/15 p-3">
-              <p className="text-xs font-bold uppercase tracking-wide text-white">Intake</p>
               <p className="mt-1 font-semibold text-cyan-200">{classItem.intake}</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-white">Intake</p>
             </div>
             <div className="rounded-md border border-gray-700/50 bg-black/15 p-3">
-              <p className="text-xs font-bold uppercase tracking-wide text-white">Year of Study</p>
               <p className="mt-1 font-semibold text-cyan-200">Year {classItem.year_of_study}</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-white">Level</p>
             </div>
             <div className="rounded-md border border-gray-700/50 bg-black/15 p-3">
-              <p className="text-xs font-bold uppercase tracking-wide text-white">Lecturer</p>
               <p className="mt-1 font-semibold text-cyan-200">{classItem.lecturer || 'N/A'}</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-white">Lecturer</p>
+            </div>
+            <div className="rounded-md border border-gray-700/50 bg-black/15 p-3">
+              <p className="mt-1 font-semibold text-cyan-200">{formatDate(classItem.start_date)}</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-white">Starts</p>
+            </div>
+            <div className="rounded-md border border-gray-700/50 bg-black/15 p-3">
+              <p className="mt-1 font-semibold text-cyan-200">{formatDate(classItem.cat_date)}</p>
+              <p className="text-xs font-bold uppercase tracking-wide text-white">CAT</p>
             </div>
           </div>
         )}
-
-        <div className={`mt-4 flex items-center gap-2 ${compact ? 'text-sm' : 'text-xs'}`}>
-          <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-cyan-200">
-            {classItem.classroom || 'Ongoing'}
-          </span>
-          <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-cyan-200">
-            Starts: {formatDate(classItem.start_date)}
-          </span>
-          {classItem.cat_date && (
-            <span className="rounded-full bg-gray-700 px-2 py-1 font-semibold text-cyan-200">
-              CAT: {formatDate(classItem.cat_date)}
-            </span>
-          )}
-        </div>
       </div>
 
       {!compact && (

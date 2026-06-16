@@ -64,6 +64,7 @@ export default function FindClassesClient() {
     const params = new URLSearchParams({
       limit: String(PAGE_SIZE),
       offset: String((page - 1) * PAGE_SIZE),
+      sort: 'updated',
     });
 
     if (appliedSearch.trim()) params.set('search', appliedSearch.trim());

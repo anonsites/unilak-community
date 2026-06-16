@@ -215,6 +215,12 @@ export default function InformationPage() {
                 >
                   Yes! Thanks
                 </button>
+                <Link
+                    href="/feedback"
+                    className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors"
+                  >
+                    Send us Feedback
+                </Link>
               </div>
             </div>
           </div>
