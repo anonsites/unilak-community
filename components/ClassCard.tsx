@@ -68,7 +68,7 @@ export default function ClassCard({ classItem, compact = false }: ClassCardProps
       </div>
 
       {!compact && (
-        <div className="mt-5">
+        <div className="mt-5 flex justify-end gap-2">
           <button className="inline-flex items-center gap-2 rounded-md bg-cyan-600 px-4 py-2 text-lg font-bold text-white transition hover:bg-cyan-500">
             View Details
             <svg

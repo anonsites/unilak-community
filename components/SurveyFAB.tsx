@@ -14,7 +14,7 @@ export default function SurveyFAB() {
     <>
       <button
         onClick={() => setIsSurveyOpen(true)}
-        className="fixed bottom-25 right-6 z-50 p-4 bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+        className="fixed bottom-25 left-6 z-50 p-4 bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
         title="Help us improve - Share your class info"
       >
         {/* WhatsApp Icon */}
