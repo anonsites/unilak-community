@@ -75,7 +75,7 @@
 
 - [ ] Create 4 new landing card components:
   - `FindCoursesCard.tsx` - navigates to `/find-classes`
-  - `StudentStoriesCard.tsx` - navigates to `/reviews` (rebranded UI)
+  - `StudentStoriesCard.tsx` - navigates to `/reviews` (rebranded UI) //this is not in use by now
   - `MakeAnnouncementCard.tsx` - navigates to `/announcement`
   - `LearnMoreCard.tsx` - navigates to `/information`
 

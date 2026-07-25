@@ -4,22 +4,24 @@ import { createClient } from '@/lib/supabaseServer';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import { unwrap } from '@/lib/utils';
-import AnnouncementSection from '@/components/AnnouncementSection';
 import Avatar from '@/components/Avatar';
+import AnnouncementSection from '@/components/AnnouncementSection';
+import JoinEventsCard from '@/components/JoinEventsCard';
 import FindClassesWithSurvey from '@/components/FindClassesWithSurvey';
-import StudentStoriesCard from '@/components/StudentStoriesCard';
+import StudentStoriesCard from '@/components/StudentStoriesCard'; //should be used later
 import MakeAnnouncementCard from '@/components/AnnouncementCard';
 import LearnMoreCard from '@/components/FaqCard';
+import AdvertSection from '@/components/AdvertSection';
 
 // Revalidate the page every 60 seconds. This helps with performance while keeping data fresh.
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'UNILAK Community',
-  description: 'Find UNILAK classes, read student stories, follow announcements, and get community information in one place.',
+  description: 'Find UNILAK classes, join campus events, follow announcements, and stay connected with the student community in one place.',
   openGraph: {
     title: 'UNILAK Community',
-    description: 'Find classes, share student stories, get announcements, and connect with the UNILAK community.',
+    description: 'Find classes, join events, get announcements, and connect with the UNILAK community.',
     type: 'website',
   },
   verification: {
@@ -119,7 +121,7 @@ export default async function Home() {
           <section>
             <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
               <FindClassesWithSurvey />
-              <StudentStoriesCard />
+              <JoinEventsCard/>
               <MakeAnnouncementCard />
               <LearnMoreCard />
             </div>
@@ -127,6 +129,11 @@ export default async function Home() {
         </div>
 
       </div>
+
+      <div className="mx-auto w-full max-w-7xl px-4 pb-6 md:px-8">
+        <AdvertSection />
+      </div>
+
       {/* FOOTER */}
       <Footer />
       <CookieConsent />

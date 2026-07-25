@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     default: "UNILAK COMMUNITY",
     template: "%s | UNILAK COMMUNITY"
   },
-  description: "The community platform for UNILAK students to share reviews, announcements, and facts.",
-  keywords: ["UNILAK", "Reviews", "E-Learning", "E-Learning all courses", "Announcements", "community", "campus life", "facts"],
+  description: "The community platform for UNILAK students to find classes, announcements, and engage in events.",
+  keywords: ["UNILAK kigali", "UNILAK courses", " UNILAK E-Learning online quiz", "UNILAK E-Learning all courses", "UNILAK online services", "UNILAK courses", "kigali campus life", "events in kigali", "events near me"],
   openGraph: {
     title: "UNILAK COMMUNITY",
     description: "The community platform for UNILAK students.",

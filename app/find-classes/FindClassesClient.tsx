@@ -152,7 +152,9 @@ export default function FindClassesClient() {
             </div>
           )}
 
-          {isLoading ? (
+          <div className="mb-6 flex flex-col gap-6 xl:flex-row xl:items-start">
+            <div className="min-w-0 flex-1">
+              {isLoading ? (
             <div className={view === 'grid' ? 'grid gap-4 md:grid-cols-2 xl:grid-cols-3' : 'grid gap-4'}>
               {Array.from({ length: 6 }).map((_, index) => (
                 <SkeletonCard key={index} />
@@ -179,26 +181,28 @@ export default function FindClassesClient() {
             </div>
           )}
 
-          <div className="mt-6 flex items-center justify-between gap-3">
-            <button
-              type="button"
-              disabled={page <= 1 || isLoading}
-              onClick={() => setPage((current) => Math.max(1, current - 1))}
-              className="rounded-lg border border-white/10 px-4 py-2 text-sm font-bold text-gray-200 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              Previous
-            </button>
-            <p className="text-sm text-gray-400">
-              Page {page} of {totalPages}
-            </p>
-            <button
-              type="button"
-              disabled={page >= totalPages || isLoading}
-              onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
-              className="rounded-lg border border-white/10 px-4 py-2 text-sm font-bold text-gray-200 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              Next
-            </button>
+              <div className="mt-6 flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  disabled={page <= 1 || isLoading}
+                  onClick={() => setPage((current) => Math.max(1, current - 1))}
+                  className="rounded-lg border border-white/10 px-4 py-2 text-sm font-bold text-gray-200 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Previous
+                </button>
+                <p className="text-sm text-gray-400">
+                  Page {page} of {totalPages}
+                </p>
+                <button
+                  type="button"
+                  disabled={page >= totalPages || isLoading}
+                  onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+                  className="rounded-lg border border-white/10 px-4 py-2 text-sm font-bold text-gray-200 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           </div>
         </section>
       </div>

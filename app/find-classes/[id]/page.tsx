@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import DonationCard from '@/components/DonationCard';
 import ShareClassButtons from '@/components/ShareClassButtons';
+import AdvertSection from '@/components/AdvertSection';
 import { createClient } from '@/lib/supabaseServer';
 import { UniversityClass } from '@/lib/types';
 
@@ -236,8 +237,9 @@ export default async function ClassDetailPage({
             <ShareClassButtons classId={classItem.id} courseName={classItem.course_name} />
           </div>
 
-          <div className="lg:sticky lg:top-24 lg:self-start pt-6 lg:pt-0">
+          <div className="lg:sticky lg:top-24 lg:self-start pt-6 lg:pt-0 space-y-4">
             <DonationCard />
+            <AdvertSection />
           </div>
         </div>
       </div>
