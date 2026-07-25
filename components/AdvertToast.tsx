@@ -48,14 +48,14 @@ export default function AdvertToast() {
         ×
       </button>
 
-      <div className="overflow-hidden rounded-xl">
+      <div className="overflow-hidden rounded-xl border-2 border-yellow-400 shadow-[0_0_0_3px_rgba(250,204,21,0.25)]">
         <Image
           key={slides[activeIndex]}
           src={slides[activeIndex]}
           alt="Featured singles ad"
           width={320}
           height={480}
-          className="h-72 w-full object-cover object-center transition-all duration-500"
+          className="h-72 w-full object-cover object-center transition-all duration-700 ease-out animate-[zoomIn_0.7s_ease-out]"
         />
       </div>
 

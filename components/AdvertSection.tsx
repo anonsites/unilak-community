@@ -6,7 +6,7 @@ export default function AdvertSection() {
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-300">
-            Sponsored
+            Ad
           </p>
         </div>
       </div>
