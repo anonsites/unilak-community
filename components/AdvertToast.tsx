@@ -30,7 +30,7 @@ export default function AdvertToast() {
 
   return (
     <a
-      href="https://kandebe.vercel.app/indaya"
+      href="https://vibegream-dating.vercel.app/indaya"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed right-4 bottom-4 z-50 block w-80 max-w-[90vw] rounded-2xl border border-white/10 bg-gray-900/95 p-3 shadow-2xl text-white backdrop-blur-sm animate-in slide-in-from-right duration-300"
