@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import StickyHeader from "@/components/StickyHeader";
+import StickyHeader from "@/components/others/StickyHeader";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
@@ -17,21 +17,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://unilak-community.vercel.app'), // vercel production domain
   title: {
-    default: "UNILAK COMMUNITY",
-    template: "%s | UNILAK COMMUNITY"
+    default: "MY UNILAK",
+    template: "%s | MY UNILAK"
   },
   description: "The community platform for UNILAK students to find classes, announcements, and engage in events.",
   keywords: ["UNILAK kigali", "UNILAK courses", " UNILAK E-Learning online quiz", "UNILAK E-Learning all courses", "UNILAK online services", "UNILAK courses", "kigali campus life", "events in kigali", "events near me"],
   openGraph: {
-    title: "UNILAK COMMUNITY",
+    title: "MY UNILAK",
     description: "The community platform for UNILAK students.",
     type: "website",
     locale: "en_US",
-    siteName: "UNILAK COMMUNITY",
+    siteName: "MY UNILAK",
   },
   twitter: {
     card: "summary_large_image",
-    title: "UNILAK COMMUNITY",
+    title: "MY UNILAK",
   },
 };
 
@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="apple-mobile-web-app-title" content="UNILAK community" />
+        <meta name="apple-mobile-web-app-title" content="MY UNILAK" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="192x192" href="/web-app-manifest-192x192.png" />

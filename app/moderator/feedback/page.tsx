@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/client';
-import ConfirmModal from '@/components/ConfirmModal';
+import ConfirmModal from '@/components/others/ConfirmModal';
 import { timeAgo } from '@/lib/utils';
 
 interface Feedback {

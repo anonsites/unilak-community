@@ -1,4 +1,4 @@
-UNILAK COMMUNITY
+MY UNILAK
 ========================
 
 DESCRIPTION:
@@ -24,7 +24,6 @@ PAGES
 
 ## AUTHENTICATION RULES
 
-* Signup is required to add reviews
 * Anonymous-first usernames
 * Role-based naming
 
@@ -44,16 +43,9 @@ Usernames auto-increment.
 
 #### Dynamic stats (overview)
 
-* Total positive reviews
-* Total negative reviews
-* Progress sliders based on counts
-
 #### Other sections
 
 * Announcement (TOP SECTION)
-* Navigation text: ASK > CLAIM > REVIEW
-* Recent Reviews (latest 4)
-* Did You Know (moderator-managed)
 * ANNOUNCEMENT FEED
 
 #### QUICK LINKS (footer)
@@ -64,97 +56,11 @@ Usernames auto-increment.
 * Community Usage Rules
 * Privacy policy
 
-3. REVIEWS PAGES
-========================
-
-#### 1 Topic Filters (horizontal scroll)
-
-* Leadership
-* Lecturers
-* Students
-* Week of Prayer
-* Technology
-* Knowledge
-* Other Services
-
-Page layout:
-
-* Reviews cards (2x2)
-* Floating 'ADD YOURS' button (FAB)
-
-Submitting a review requires authentication.
-
-
-TOPICS STRUCTURE
-==========================================
-
-### Main Topics + Subtopics
-
-* LECTURERS
-
-  * Secret
-  * Individual
-  * All
-
-* LEADERSHIP
-  * Principal
-  * Dean of Studies
-  * Recovery Office
-  * HOD CIS
-  * HOD ESM
-  * Security
-  * IT Office
-  * Individual
-
-* TECHNOLOGY
-  * MIS / Elearning
-  * Smart Attendance
-  * Smart Boards
-  * Network / WIFI
-  * Other
-
-* WEEK OF PRAYER
-  * programm
-
-* STUDENTS
-  * All
-  * Individual
-  * International
-  * Rwandan
-
-* KNOWLEDGE
- * General
-
-* OTHER SERVICES
- * General
-
-
-## REVIEW DISPLAY STRUCTURE
-==========================================
-
-Each review shows:
-
-* Profile avatar
-* Username
-* Description: `is talking about <topic> in UNILAK > <subtopic>, <type>`
-* Review content
-* Optional recommendation
-* Timestamp
-* 3-dot menu:
-
-  * Owner: edit / delete
-  * Moderator: delete
-  * Others: report
-
-
 ============ 3 ADMIN DASHBOARD (moderator) ============
 
 Capabilities:
 ==================================
-* Manage reviews (delete)
-* Manage reports (exmine reported reviews)
 * Manage announcements (Screen, reject, approve, handle payments)
-* Manage facts (update did you know)
 * Manage users
 * View the users feedback
 
@@ -164,7 +70,6 @@ Capabilities:
 
 Phase 1 (MVP):
 * Auth ✅
-* Reviews ✅
 * Announcements ✅
 * chat modal and Whatsapp integration ✅
 * Admin dashboard ✅

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/client';
-import Avatar from '@/components/Avatar';
+import Avatar from '@/components/others/Avatar';
 
 interface Profile {
   id: string;

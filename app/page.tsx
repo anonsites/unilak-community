@@ -1,27 +1,23 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { createClient } from '@/lib/supabaseServer';
-import Footer from '@/components/Footer';
-import CookieConsent from '@/components/CookieConsent';
+import Footer from '@/components/others/SiteFooter';
+import CookieConsent from '@/components/home/CookieConsent';
 import { unwrap } from '@/lib/utils';
-import Avatar from '@/components/Avatar';
-import AnnouncementSection from '@/components/AnnouncementSection';
-import JoinEventsCard from '@/components/JoinEventsCard';
-import FindClassesWithSurvey from '@/components/FindClassesWithSurvey';
-import StudentStoriesCard from '@/components/StudentStoriesCard'; //should be used later
-import MakeAnnouncementCard from '@/components/AnnouncementCard';
-import LearnMoreCard from '@/components/FaqCard';
-import AdvertSection from '@/components/AdvertSection';
+import Avatar from '@/components/others/Avatar';
+// import AnnouncementSection from '@/components/home/AnnouncementSection';
+import HomeNavCards from '@/components/home/HomeNavCards';
+import AdvertSection from '@/components/home/AdvertSection';
 
 // Revalidate the page every 60 seconds. This helps with performance while keeping data fresh.
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'UNILAK Community',
+  title: 'MY UNILAK',
   description: 'Find UNILAK classes, join campus events, follow announcements, and stay connected with the student community in one place.',
   openGraph: {
-    title: 'UNILAK Community',
-    description: 'Find classes, join events, get announcements, and connect with the UNILAK community.',
+    title: 'MY UNILAK',
+    description: 'Find classes, join events, get announcements, and connect with the UNILAK students.',
     type: 'website',
   },
   verification: {
@@ -47,24 +43,18 @@ export default async function Home() {
   const { data: announcements } = await supabase
     .from('announcements_table')
     .select(`
-      id, 
+      id,
+      user_id,
       message,
       phone,
       created_at,
-      announcement_requests_table (
-        user_id,
-        profiles_table (
-          username,
-          avatar_url
-        )
-      ),
+      profiles_table:user_id (username, avatar_url),
       announcement_responses_table (count)
     `)
     .order('created_at', { ascending: false })
 
   const processedAnnouncements = announcements?.map(ann => {
-    const requestData = unwrap(ann.announcement_requests_table);
-    const profileData = unwrap(requestData?.profiles_table);
+    const profileData = unwrap(ann.profiles_table);
     const responseCount = unwrap(ann.announcement_responses_table)?.count || 0;
     return {
       id: ann.id,
@@ -73,7 +63,7 @@ export default async function Home() {
       created_at: ann.created_at,
       username: profileData?.username,
       avatarUrl: profileData?.avatar_url,
-      ownerId: requestData?.user_id ?? null,
+      ownerId: ann.user_id ?? null,
       responseCount,
     };
   }) || [];
@@ -83,7 +73,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-[#535350] text-white font-sans w-full flex flex-col">
       <div className="w-full grow">
-        <section className="w-full border-b border-white/10 bg-[#1d231d] px-4 py-8 shadow-lg md:px-8">
+        {/*<section className="w-full border-b border-white/10 bg-[#1d231d] px-4 py-8 shadow-lg md:px-8">
           <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
             <AnnouncementSection
               announcements={processedAnnouncements.slice(0, 3)}
@@ -115,15 +105,12 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-        </section>
+        </section>*/}
 
         <div className="mx-auto w-full max-w-7xl space-y-12 px-4 py-10 md:px-8 md:py-12">
           <section>
-            <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
-              <FindClassesWithSurvey />
-              <JoinEventsCard/>
-              <MakeAnnouncementCard />
-              <LearnMoreCard />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <HomeNavCards />
             </div>
           </section>
         </div>

@@ -24,7 +24,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-xl font-bold text-white mb-3">1. Introduction</h2>
               <p>
-                Welcome to UNILAK Community. We respect your privacy and are committed to protecting your personal data. 
+                Welcome to MY UNILAK. We respect your privacy and are committed to protecting your personal data. 
                 This privacy policy will inform you as to how we look after your personal data when you visit our website 
                 and tell you about your privacy rights and how the law protects you.
               </p>
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
                 <li><strong>Identity Data:</strong> includes username or similar identifier, and role at the university.</li>
                 <li><strong>Contact Data:</strong> includes email address.</li>
                 <li><strong>Technical Data:</strong> includes internet protocol (IP) address, browser type and version, time zone setting and location, and operating system.</li>
-                <li><strong>Usage Data:</strong> includes information about how you use our website, such as reviews posted and interactions.</li>
+                <li><strong>Usage Data:</strong> includes information about how you use our website and interact with the community.</li>
               </ul>
             </section>
 
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
               <ul className="list-disc pl-5 space-y-1 mt-2">
                 <li>To register you as a new user.</li>
                 <li>To manage our relationship with you.</li>
-                <li>To enable you to partake in our community features (reviews, announcements).</li>
+                <li>To enable you to take part in our community features, including announcements.</li>
                 <li>To administer and protect our business and this website.</li>
               </ul>
             </section>

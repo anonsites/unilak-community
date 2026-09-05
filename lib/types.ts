@@ -1,13 +1,3 @@
-import { Database } from './database.types';
-
-export type ReviewWithRelations = Database['public']['Tables']['reviews_table']['Row'] & {
-  profiles_table: { username: string | null; avatar_url: string | null } | null;
-  topics_table: { name: string } | null;
-  subtopics_table: { name: string } | null;
-  reactions_count: Record<string, number> | null;
-  view_count: number | null;
-};
-
 export type ClassStatus = 'active' | 'inactive' | 'completed';
 
 export type UniversityClass = {

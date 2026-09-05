@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Community Rules',
-  description: 'Understand the rules and guidelines for participating in the UNILAK Community platform. Be respectful, honest, and protect your privacy.',
+  description: 'Understand the rules and guidelines for participating in the MY UNILAK platform. Be respectful, honest, and protect your privacy.',
 };
 
 export default function RulesPage() {

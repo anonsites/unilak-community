@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { createClient } from '@/utils/supabase/client';
 import { Database } from '@/lib/database.types';
-import JSONImportModal from '@/components/JSONImportModal';
+import JSONImportModal from '@/components/students/classes/JSONImportModal';
 
 type ClassRow = Database['public']['Tables']['classes_table']['Row'];
 
