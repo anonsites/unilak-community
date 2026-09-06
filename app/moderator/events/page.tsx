@@ -8,7 +8,7 @@ import { Database } from '@/lib/database.types';
 import EventModal from '@/components/moderator/EventModal';
 
 type EventRow = Database['public']['Tables']['events_table']['Row'];
-type EventForm = { title: string; category: string; startDate: string; endDate: string; duration: string };
+type EventForm = { title: string; category: string; startDate: string; endDate: string; duration: string; venue: 'online' | 'on-site'; venueValue: string };
 type Tab = 'upcoming' | 'finished';
 
 export default function ModeratorEventsPage() {
@@ -61,6 +61,8 @@ export default function ModeratorEventsPage() {
       start_date: new Date(form.startDate).toISOString(),
       end_date: new Date(form.endDate).toISOString(),
       duration: form.duration,
+      venue: form.venue,
+      venue_value: form.venueValue,
       status: 'published' as const,
       created_by: modalEvent?.created_by || user.id,
       published_at: modalEvent?.published_at || new Date().toISOString(),

@@ -12,6 +12,8 @@ type EventForm = {
   startDate: string;
   endDate: string;
   duration: string;
+  venue: 'online' | 'on-site';
+  venueValue: string;
 };
 
 interface EventModalProps {
@@ -29,12 +31,14 @@ export default function EventModal({ event, onClose, onSave }: EventModalProps) 
     startDate: event?.start_date ? event.start_date.slice(0, 16) : '',
     endDate: event?.end_date ? event.end_date.slice(0, 16) : '',
     duration: event?.duration || '',
+    venue: (event?.venue as 'online' | 'on-site') || 'on-site',
+    venueValue: event?.venue_value || '',
   });
   const [flyer, setFlyer] = useState<File | null>(null);
   const [preview, setPreview] = useState(event?.flyer_url || '');
   const [saving, setSaving] = useState(false);
 
-  const update = (key: keyof EventForm, value: string) => {
+  const update = <Key extends keyof EventForm>(key: Key, value: EventForm[Key]) => {
     setForm((current) => ({ ...current, [key]: value }));
   };
 
@@ -93,6 +97,17 @@ export default function EventModal({ event, onClose, onSave }: EventModalProps) 
             <div>
               <label htmlFor="event-duration" className="mb-1 block text-sm font-medium text-gray-300">Duration</label>
               <input id="event-duration" required placeholder="e.g. 2 hours" value={form.duration} onChange={(input) => update('duration', input.target.value)} className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-white outline-none focus:border-rose-400" />
+            </div>
+            <div>
+              <label htmlFor="event-venue" className="mb-1 block text-sm font-medium text-gray-300">Venue</label>
+              <select id="event-venue" value={form.venue} onChange={(input) => update('venue', input.target.value as EventForm['venue'])} className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-white outline-none focus:border-rose-400">
+                <option value="on-site">On-site</option>
+                <option value="online">Online</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="event-venue-value" className="mb-1 block text-sm font-medium text-gray-300">{form.venue === 'online' ? 'Event link' : 'Place name'}</label>
+              <input id="event-venue-value" required type={form.venue === 'online' ? 'url' : 'text'} placeholder={form.venue === 'online' ? 'https://...' : 'e.g. Main Auditorium'} value={form.venueValue} onChange={(input) => update('venueValue', input.target.value)} className="w-full rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-white outline-none focus:border-rose-400" />
             </div>
           </div>
         </div>

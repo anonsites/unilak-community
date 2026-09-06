@@ -64,6 +64,8 @@ export type Database = {
           status: string
           start_date: string | null
           title: string
+          venue: string | null
+          venue_value: string | null
         }
         Insert: {
           category: string
@@ -78,6 +80,8 @@ export type Database = {
           status?: string
           start_date?: string | null
           title: string
+          venue?: string | null
+          venue_value?: string | null
         }
         Update: {
           category?: string
@@ -92,6 +96,8 @@ export type Database = {
           status?: string
           start_date?: string | null
           title?: string
+          venue?: string | null
+          venue_value?: string | null
         }
         Relationships: [
           {

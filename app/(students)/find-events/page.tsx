@@ -7,9 +7,13 @@ export default async function JoinEventsPage() {
   const supabase = await createClient();
   const { data: events, error } = await supabase
     .from('events_table')
-    .select('id, title, category, flyer_url, interest_count')
+    .select('id, title, category, flyer_url, interest_count, start_date, end_date, duration, venue, venue_value')
     .eq('status', 'published')
     .order('published_at', { ascending: false });
+
+  if (error) {
+    console.error('Public events query failed:', error);
+  }
 
   const eventCards = (events || []).map((event) => ({
     id: event.id,
@@ -17,6 +21,11 @@ export default async function JoinEventsPage() {
     category: event.category,
     flyerUrl: event.flyer_url,
     interestCount: event.interest_count,
+    startDate: event.start_date,
+    endDate: event.end_date,
+    duration: event.duration,
+    venue: event.venue,
+    venueValue: event.venue_value,
   }));
 
   return (

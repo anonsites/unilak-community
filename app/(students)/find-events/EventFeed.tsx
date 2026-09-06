@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { createClient } from '@/utils/supabase/client';
+import EventDetailsModal from '@/components/students/events/EventDetailsModal';
 
 type EventCard = {
   id: string;
@@ -11,11 +12,17 @@ type EventCard = {
   category: string;
   flyerUrl: string;
   interestCount: number;
+  startDate: string | null;
+  endDate: string | null;
+  duration: string | null;
+  venue: string | null;
+  venueValue: string | null;
 };
 
 export default function EventFeed({ events }: { events: EventCard[] }) {
   const [eventState, setEventState] = useState(events);
   const [pendingId, setPendingId] = useState<string | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<EventCard | null>(null);
   const router = useRouter();
   const supabase = createClient();
 
@@ -58,20 +65,47 @@ export default function EventFeed({ events }: { events: EventCard[] }) {
   }
 
   return (
+    <>
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {eventState.map((event) => (
-        <article key={event.id} className="overflow-hidden rounded-2xl border border-white/10 bg-gray-900 shadow-xl">
+        <article
+          key={event.id}
+          role="button"
+          tabIndex={0}
+          onClick={() => setSelectedEvent(event)}
+          onKeyDown={(keyboardEvent) => {
+            if (keyboardEvent.key === 'Enter' || keyboardEvent.key === ' ') {
+              keyboardEvent.preventDefault();
+              setSelectedEvent(event);
+            }
+          }}
+          className="cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-gray-900 shadow-xl transition hover:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+        >
           <div className="aspect-4/5 bg-gray-800">
             <Image src={event.flyerUrl} alt={event.title} width={800} height={1000} className="h-full w-full object-cover" />
           </div>
           <div className="flex items-center justify-between gap-4 p-4">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-wider text-cyan-400">{event.category}</p>
-              <h2 className="mt-1 truncate text-lg font-bold text-white">{event.title}</h2>
+              <p className="mt-1 truncate text-lg font-bold text-white">
+                {event.startDate
+                  ? new Date(event.startDate).toLocaleString('en-GB', {
+                      day: '2-digit',
+                      month: '2-digit',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: false,
+                    })
+                  : 'Date to be announced'}
+              </p>
             </div>
             <button
               type="button"
-              onClick={() => expressInterest(event)}
+              onClick={(clickEvent) => {
+                clickEvent.stopPropagation();
+                void expressInterest(event);
+              }}
               disabled={pendingId === event.id}
               className="shrink-0 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-bold text-white transition hover:bg-emerald-400 disabled:cursor-wait disabled:opacity-60"
             >
@@ -82,5 +116,7 @@ export default function EventFeed({ events }: { events: EventCard[] }) {
         </article>
       ))}
     </div>
+    {selectedEvent && <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />}
+    </>
   );
 }
