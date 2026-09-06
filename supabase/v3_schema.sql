@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS public.events_table (
 		category IN ('Academic', 'prayer', 'Sports', 'Clubs', 'Social', 'Career', 'Other')
 	),
 	flyer_url TEXT NOT NULL,
+	start_date TIMESTAMP WITH TIME ZONE,
+	end_date TIMESTAMP WITH TIME ZONE,
+	duration TEXT,
 	interest_count INTEGER NOT NULL DEFAULT 0 CHECK (interest_count >= 0),
 	status VARCHAR(20) NOT NULL DEFAULT 'published' CHECK (
 		status IN ('draft', 'published', 'archived')
@@ -18,6 +21,11 @@ CREATE TABLE IF NOT EXISTS public.events_table (
 	created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
 	published_at TIMESTAMP WITH TIME ZONE
 );
+
+ALTER TABLE public.events_table
+	ADD COLUMN IF NOT EXISTS start_date TIMESTAMP WITH TIME ZONE,
+	ADD COLUMN IF NOT EXISTS end_date TIMESTAMP WITH TIME ZONE,
+	ADD COLUMN IF NOT EXISTS duration TEXT;
 
 CREATE INDEX IF NOT EXISTS idx_events_status_published_at
 	ON public.events_table(status, published_at DESC);
@@ -36,6 +44,7 @@ CREATE INDEX IF NOT EXISTS idx_event_interests_event_id
 ALTER TABLE public.events_table ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.event_interests_table ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Public can view published events" ON public.events_table;
 CREATE POLICY "Public can view published events"
 ON public.events_table FOR SELECT
 USING (status = 'published');

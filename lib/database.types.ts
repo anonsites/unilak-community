@@ -55,33 +55,42 @@ export type Database = {
           category: string
           created_at: string
           created_by: string | null
+          duration: string | null
+          end_date: string | null
           flyer_url: string
           id: string
           interest_count: number
           published_at: string | null
           status: string
+          start_date: string | null
           title: string
         }
         Insert: {
           category: string
           created_at?: string
           created_by?: string | null
+          duration?: string | null
+          end_date?: string | null
           flyer_url: string
           id?: string
           interest_count?: number
           published_at?: string | null
           status?: string
+          start_date?: string | null
           title: string
         }
         Update: {
           category?: string
           created_at?: string
           created_by?: string | null
+          duration?: string | null
+          end_date?: string | null
           flyer_url?: string
           id?: string
           interest_count?: number
           published_at?: string | null
           status?: string
+          start_date?: string | null
           title?: string
         }
         Relationships: [

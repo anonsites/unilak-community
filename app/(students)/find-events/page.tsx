@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabaseServer';
 
 export default async function JoinEventsPage() {
   const supabase = await createClient();
-  const { data: events } = await supabase
+  const { data: events, error } = await supabase
     .from('events_table')
     .select('id, title, category, flyer_url, interest_count')
     .eq('status', 'published')
@@ -26,7 +26,14 @@ export default async function JoinEventsPage() {
       </header>
 
       <div className="max-w-5xl mx-auto p-5">
-        <EventFeed events={eventCards} />
+        {error ? (
+          <div className="flex min-h-[70vh] items-center justify-center">
+            <div className="max-w-md text-center">
+              <h2 className="text-xl font-semibold">Events are temporarily unavailable</h2>
+              <p className="mt-2 text-white/70">Please try again later.</p>
+            </div>
+          </div>
+        ) : <EventFeed events={eventCards} />}
 
         <div className="mt-8">
           <AdvertSection />

@@ -3,17 +3,18 @@ import { createClient } from '@/lib/supabaseServer';
 
 export default async function ModeratorDashboard() {
   const supabase = await createClient();
+  const today = new Date().toISOString().split('T')[0];
 
   const { data: { user } } = await supabase.auth.getUser();
   const username = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Moderator';
 
   // Fetch stats
-  const [announcements, feedback, users, classes, surveys, faqs] = await Promise.all([
+  const [announcements, feedback, users, classes, events, faqs] = await Promise.all([
     supabase.from('announcements_table').select('*', { count: 'exact', head: true }),
     supabase.from('feedback_table').select('*', { count: 'exact', head: true }),
     supabase.from('profiles_table').select('*', { count: 'exact', head: true }),
-    supabase.from('classes_table').select('*', { count: 'exact', head: true }),
-    supabase.from('survey_responses_table').select('*', { count: 'exact', head: true }),
+    supabase.from('classes_table').select('*', { count: 'exact', head: true }).gte('end_date', today),
+    supabase.from('events_table').select('*', { count: 'exact', head: true }),
     supabase.from('faq_table').select('*', { count: 'exact', head: true })
   ]);
 
@@ -22,14 +23,14 @@ export default async function ModeratorDashboard() {
     totalFeedback: feedback.count || 0,
     totalUsers: users.count || 0,
     totalClasses: classes.count || 0,
-    totalSurveys: surveys.count || 0,
+    totalEvents: events.count || 0,
     totalFAQs: faqs.count || 0
   };
 
   return (
     <div className="min-h-screen bg-[#535350] text-white font-sans">
       {/* Header */}
-      <div className="w-full bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 py-8 shadow-xl mb-8 border-b border-gray-600">
+      <div className="w-full bg-linear-to-r from-gray-800 via-gray-700 to-gray-800 py-8 shadow-xl mb-8 border-b border-gray-600">
         <div className="w-full px-4 md:px-8 flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold tracking-wider text-white drop-shadow-md">COMMUNITY DASHBOARD</h1>
@@ -62,8 +63,8 @@ export default async function ModeratorDashboard() {
           </div>
         </Link>
 
-        {/* Survey Responses Card */}
-        <Link href="/moderator/survey" className="block group">
+        {/* Events Card */}
+        <Link href="/moderator/events" className="block group">
           <div className="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700 hover:border-rose-500/50 transition-all h-48 flex flex-col relative">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-rose-500/10 rounded-lg">
@@ -71,13 +72,13 @@ export default async function ModeratorDashboard() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-200 group-hover:text-rose-400 transition-colors">Survey Responses</h3>
+              <h3 className="text-lg font-bold text-gray-200 group-hover:text-rose-400 transition-colors">Events</h3>
             </div>
             <div className="flex-1 flex items-center justify-center">
-              <h3 className="text-4xl font-bold text-white">{stats.totalSurveys}</h3>
+              <h3 className="text-4xl font-bold text-white">{stats.totalEvents}</h3>
             </div>
             <div className="absolute bottom-4 right-6">
-              <span className="text-xs font-semibold text-gray-500 uppercase">Contributions</span>
+              <span className="text-xs font-semibold text-gray-500 uppercase">Published events</span>
             </div>
           </div>
         </Link>

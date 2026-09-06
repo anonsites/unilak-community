@@ -45,9 +45,12 @@ export async function GET(req: Request) {
 
     const url = new URL(req.url);
     const sort = url.searchParams.get('sort') || 'updated';
+    const faculty = url.searchParams.get('faculty') || '';
     const department = url.searchParams.get('department') || '';
     const program = url.searchParams.get('program') || '';
     const search = url.searchParams.get('search') || '';
+    const status = url.searchParams.get('status') || '';
+    const today = new Date().toISOString().split('T')[0];
 
     // Build query for ALL classes (no date filtering)
     let query = supabase
@@ -59,8 +62,18 @@ export async function GET(req: Request) {
       query = query.eq('department', department);
     }
 
+    if (faculty) {
+      query = query.eq('faculty', faculty);
+    }
+
     if (program) {
       query = query.eq('program', program);
+    }
+
+    if (status === 'ongoing') {
+      query = query.gte('end_date', today);
+    } else if (status === 'finished') {
+      query = query.lt('end_date', today);
     }
 
     // Apply search
