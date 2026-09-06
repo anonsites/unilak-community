@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { createClient } from '@/utils/supabase/client';
 import { Database } from '@/lib/database.types';
 import EventModal from '@/components/moderator/EventModal';
+import EventDetailsModal from '@/components/students/events/EventDetailsModal';
 
 type EventRow = Database['public']['Tables']['events_table']['Row'];
 type EventForm = { title: string; category: string; startDate: string; endDate: string; duration: string; venue: 'online' | 'on-site'; venueValue: string };
@@ -16,6 +17,7 @@ export default function ModeratorEventsPage() {
   const [events, setEvents] = useState<EventRow[]>([]);
   const [tab, setTab] = useState<Tab>('upcoming');
   const [modalEvent, setModalEvent] = useState<EventRow | null | undefined>(undefined);
+  const [detailsEvent, setDetailsEvent] = useState<EventRow | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [now] = useState(() => Date.now());
 
@@ -98,13 +100,26 @@ export default function ModeratorEventsPage() {
         </header>
 
         {visibleEvents.length === 0 ? <div className="rounded-xl border border-gray-700 bg-gray-900 p-16 text-center text-gray-400">No {tab} events.</div> : <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {visibleEvents.map((event) => <article key={event.id} className="overflow-hidden rounded-xl border border-gray-700 bg-gray-900 shadow-lg">
+          {visibleEvents.map((event) => <article
+            key={event.id}
+            role="button"
+            tabIndex={0}
+            onClick={() => setDetailsEvent(event)}
+            onKeyDown={(keyboardEvent) => {
+              if (keyboardEvent.key === 'Enter' || keyboardEvent.key === ' ') {
+                keyboardEvent.preventDefault();
+                setDetailsEvent(event);
+              }
+            }}
+            className="cursor-pointer overflow-hidden rounded-xl border border-gray-700 bg-gray-900 shadow-lg transition hover:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          >
             <div className="aspect-4/5 bg-gray-800"><Image src={event.flyer_url} alt={event.title} width={800} height={1000} className="h-full w-full object-cover" unoptimized /></div>
-            <div className="p-4"><p className="text-xs font-bold uppercase tracking-wider text-rose-400">{event.category}</p><h2 className="mt-1 truncate text-lg font-bold" title={event.title}>{event.title}</h2><p className="mt-2 text-xs text-gray-400">{event.start_date ? new Date(event.start_date).toLocaleString() : 'No start date'}{event.duration ? ` · ${event.duration}` : ''}</p><div className="mt-4 flex gap-2"><button onClick={() => setModalEvent(event)} className="flex-1 rounded-lg bg-blue-600/20 px-3 py-2 text-sm font-bold text-blue-300 hover:bg-blue-600/40">Edit</button><button onClick={() => deleteEvent(event)} className="flex-1 rounded-lg bg-red-600/20 px-3 py-2 text-sm font-bold text-red-300 hover:bg-red-600/40">Delete</button></div></div>
+            <div className="p-4"><p className="text-xs font-bold uppercase tracking-wider text-rose-400">{event.category}</p><h2 className="mt-1 truncate text-lg font-bold" title={event.title}>{event.title}</h2><p className="mt-2 text-xs text-gray-400">{event.start_date ? new Date(event.start_date).toLocaleString() : 'No start date'}{event.duration ? ` · ${event.duration}` : ''}</p><div className="mt-4 flex gap-2"><button onClick={(clickEvent) => { clickEvent.stopPropagation(); setModalEvent(event); }} className="flex-1 rounded-lg bg-blue-600/20 px-3 py-2 text-sm font-bold text-blue-300 hover:bg-blue-600/40">Edit</button><button onClick={(clickEvent) => { clickEvent.stopPropagation(); void deleteEvent(event); }} className="flex-1 rounded-lg bg-red-600/20 px-3 py-2 text-sm font-bold text-red-300 hover:bg-red-600/40">Delete</button></div></div>
           </article>)}
         </div>}
       </div>
       {modalEvent !== undefined && <EventModal event={modalEvent} onClose={() => setModalEvent(undefined)} onSave={saveEvent} />}
+      {detailsEvent && <EventDetailsModal event={{ title: detailsEvent.title, startDate: detailsEvent.start_date, endDate: detailsEvent.end_date, duration: detailsEvent.duration, venue: detailsEvent.venue, venueValue: detailsEvent.venue_value, interestCount: detailsEvent.interest_count }} onClose={() => setDetailsEvent(null)} />}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { createClient } from '@/utils/supabase/client';
 import EventDetailsModal from '@/components/students/events/EventDetailsModal';
@@ -22,32 +21,34 @@ type EventCard = {
 export default function EventFeed({ events }: { events: EventCard[] }) {
   const [eventState, setEventState] = useState(events);
   const [pendingId, setPendingId] = useState<string | null>(null);
+  const [interestedIds, setInterestedIds] = useState<Set<string>>(new Set());
   const [selectedEvent, setSelectedEvent] = useState<EventCard | null>(null);
-  const router = useRouter();
+  const [selectedCategory, setSelectedCategory] = useState('');
   const supabase = createClient();
+  const categories = Array.from(new Set(eventState.map((event) => event.category))).sort();
+  const visibleEvents = selectedCategory
+    ? eventState.filter((event) => event.category === selectedCategory)
+    : eventState;
 
   const expressInterest = async (event: EventCard) => {
     if (pendingId) return;
     setPendingId(event.id);
 
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      router.push('/auth?redirect=/find-events');
-      setPendingId(null);
-      return;
-    }
 
     const { error } = await supabase.from('event_interests_table').insert({
       event_id: event.id,
-      user_id: user.id,
+      user_id: user?.id || null,
     });
 
     if (!error || error.code === '23505') {
-      setEventState((current) => current.map((item) => (
-        item.id === event.id && !error
-          ? { ...item, interestCount: item.interestCount + 1 }
-          : item
-      )));
+      const updatedEvent = {
+        ...event,
+        interestCount: error ? event.interestCount : event.interestCount + 1,
+      };
+      setEventState((current) => current.map((item) => item.id === event.id ? updatedEvent : item));
+      setInterestedIds((current) => new Set(current).add(event.id));
+      setSelectedEvent(updatedEvent);
     }
 
     setPendingId(null);
@@ -66,8 +67,39 @@ export default function EventFeed({ events }: { events: EventCard[] }) {
 
   return (
     <>
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {eventState.map((event) => (
+    <div className="mb-6 flex gap-2 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <button
+        type="button"
+        onClick={() => setSelectedCategory('')}
+        className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+          selectedCategory === ''
+            ? 'border-cyan-400 bg-cyan-500 text-white'
+            : 'border-gray-700 bg-gray-800 text-gray-300 hover:border-cyan-500'
+        }`}
+      >
+        All
+      </button>
+      {categories.map((category) => (
+        <button
+          key={category}
+          type="button"
+          onClick={() => setSelectedCategory(category)}
+          className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
+            selectedCategory === category
+              ? 'border-cyan-400 bg-cyan-500 text-white'
+              : 'border-gray-700 bg-gray-800 text-gray-300 hover:border-cyan-500'
+          }`}
+        >
+          {category}
+        </button>
+      ))}
+    </div>
+    {visibleEvents.length === 0 ? (
+      <div className="rounded-xl border border-white/10 bg-gray-900 px-6 py-16 text-center text-white/70">
+        No events found in this category.
+      </div>
+    ) : <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {visibleEvents.map((event) => (
         <article
           key={event.id}
           role="button"
@@ -106,16 +138,17 @@ export default function EventFeed({ events }: { events: EventCard[] }) {
                 clickEvent.stopPropagation();
                 void expressInterest(event);
               }}
-              disabled={pendingId === event.id}
-              className="shrink-0 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-bold text-white transition hover:bg-emerald-400 disabled:cursor-wait disabled:opacity-60"
+              disabled={pendingId === event.id || interestedIds.has(event.id)}
+              className="shrink-0 rounded-lg bg-emerald-500 px-3 py-2 text-sm font-bold text-white transition hover:bg-emerald-400 disabled:cursor-default disabled:opacity-100"
             >
-              Interested
-              <span className="ml-1 text-emerald-100">{event.interestCount}</span>
+              {interestedIds.has(event.id) ? (
+                <span aria-label="Interest recorded" className="text-xl leading-none">✓</span>
+              ) : 'Interested'}
             </button>
           </div>
         </article>
       ))}
-    </div>
+    </div>}
     {selectedEvent && <EventDetailsModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />}
     </>
   );

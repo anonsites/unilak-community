@@ -34,10 +34,13 @@ ALTER TABLE public.events_table
 CREATE TABLE IF NOT EXISTS public.event_interests_table (
 	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 	event_id UUID NOT NULL REFERENCES public.events_table(id) ON DELETE CASCADE,
-	user_id UUID NOT NULL REFERENCES public.profiles_table(id) ON DELETE CASCADE,
+	user_id UUID REFERENCES public.profiles_table(id) ON DELETE CASCADE,
 	created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
 	CONSTRAINT unique_event_interest UNIQUE (event_id, user_id)
 );
+
+ALTER TABLE public.event_interests_table
+	ALTER COLUMN user_id DROP NOT NULL;
 
 CREATE INDEX IF NOT EXISTS idx_event_interests_event_id
 	ON public.event_interests_table(event_id);
@@ -67,9 +70,10 @@ WITH CHECK (
 	)
 );
 
-CREATE POLICY "Users can express interest in events"
+DROP POLICY IF EXISTS "Users can express interest in events" ON public.event_interests_table;
+CREATE POLICY "Anyone can express interest in events"
 ON public.event_interests_table FOR INSERT
-WITH CHECK (auth.uid() = user_id);
+WITH CHECK (user_id IS NULL OR auth.uid() = user_id);
 
 CREATE POLICY "Users can remove their event interest"
 ON public.event_interests_table FOR DELETE

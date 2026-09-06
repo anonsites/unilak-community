@@ -5,10 +5,12 @@ import { createClient } from '@/lib/supabaseServer';
 
 export default async function JoinEventsPage() {
   const supabase = await createClient();
+  const now = new Date().toISOString();
   const { data: events, error } = await supabase
     .from('events_table')
     .select('id, title, category, flyer_url, interest_count, start_date, end_date, duration, venue, venue_value')
     .eq('status', 'published')
+    .gte('end_date', now)
     .order('published_at', { ascending: false });
 
   if (error) {
